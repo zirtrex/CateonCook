@@ -1,0 +1,7 @@
+#Wed Jun 06 09:35:28 COT 2018
+base.0=R\:\\Dropbox\\Rafael\\Proyectos\\AndroidStudioProjects\\CateonCook\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_6c65c8c4664a8c796b67b6d1d5e48447af669eb0
+renamed.1=classes2.dex
+renamed.0=classes.dex
+file.1=R\:\\Dropbox\\Rafael\\Proyectos\\AndroidStudioProjects\\CateonCook\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_5f0bce922cbdf958f26e5a82a2f2b30ae92d65d9\\classes.dex
+base.1=R\:\\Dropbox\\Rafael\\Proyectos\\AndroidStudioProjects\\CateonCook\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_5f0bce922cbdf958f26e5a82a2f2b30ae92d65d9
+file.0=R\:\\Dropbox\\Rafael\\Proyectos\\AndroidStudioProjects\\CateonCook\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_6c65c8c4664a8c796b67b6d1d5e48447af669eb0\\classes.dex

@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.3.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="27.0.3"
+        sha1="47635644d0d5c103c1dd8360549eb9ba3225c7d3">
+        <dex dex="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-25.3.1_f64261298183dd007ec2635b377cdd2c8464b3ea\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rafael\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.3.1\support-annotations-25.3.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="27.0.3"
+        sha1="bf8841d29fa39e077730e7a91222c2ce269fa7c9">
+        <dex dex="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-25.3.1_5bb9bf025253561a03b43f40c7e1a1c76c1453f2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.3.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="27.0.3"
+        sha1="052f5f840f21174a3ecf6544130194e2652cbb73">
+        <dex dex="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-ui-25.3.1_e1e1c1f483f6d3a83abadee581803eed81ded59e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\exploded-aar\com.android.support\transition\25.3.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="27.0.3"
+        sha1="d4cf6227dd6a2ceff0f7dcf0c324380b7abf2c28">
+        <dex dex="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-transition-25.3.1_41336906fdfcf8354363d0f8b842cf2f1f3b6516\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\11.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="27.0.3"
+        sha1="132a3661719fdac703f2a6f6a7b178c85cfe3cc6">
+        <dex dex="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-iid-11.2.0_53ac2138ca368521569ce704625193a92c50fc6a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="27.0.3"
+        sha1="2a67d1275bcb442fb1918ba473fef28b4f2cade9">
+        <dex dex="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_5f0bce922cbdf958f26e5a82a2f2b30ae92d65d9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\11.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="27.0.3"
+        sha1="36a6c288ed760d2d899126fa90761b84af10dd2d">
+        <dex dex="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-base-11.2.0_775378898eade2e7496515687bcca05689943bc4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\exploded-aar\com.google.firebase\firebase-auth\11.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="27.0.3"
+        sha1="28ed270c519ff2874343e0824808da2efda0df9c">
+        <dex dex="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-auth-11.2.0_03f28d52866c17b3e01db7af7616d87aa73d0a2d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\25.3.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="27.0.3"
+        sha1="95519720620b553f63afc789beba9ad582807f7c">
+        <dex dex="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-25.3.1_85141fc4003cb82c6c6a7e199f9da2fce83cc0d2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\exploded-aar\com.google.firebase\firebase-common\11.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="27.0.3"
+        sha1="edba0aec4aedd4edb3a520b4ee87adc52be762da">
+        <dex dex="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-common-11.2.0_9224d1e29d01c6bf3209e8bfe42725c31757403b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\exploded-aar\com.google.firebase\firebase-database-connection\11.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="27.0.3"
+        sha1="03589bac12234193d4a7a9b106a6db1b367afe99">
+        <dex dex="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-database-connection-11.2.0_e2404460ff9aca590d659f461e32ce15da879462\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\11.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="27.0.3"
+        sha1="cad6f251cba07624f49b0c5b6287731a3c9957b8">
+        <dex dex="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-basement-11.2.0_11f7ab4bffa2348dc5f3c16c03763f1d26a136a1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.3.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="27.0.3"
+        sha1="150252b33b00274cc868578ade018fda0d43a3eb">
+        <dex dex="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-25.3.1_cb2363b19b521a7dff8c6bea0ede85ee7d10446a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.3.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="27.0.3"
+        sha1="da27a32db6af8954ee8061537c7d476fcb1df46f">
+        <dex dex="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-25.3.1_a00c2f7dab5c32f65013f3230e3b9ae5d0f81875\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\11.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="27.0.3"
+        sha1="c478771eacdf8217e093a1b967b8152cfdaadc94">
+        <dex dex="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-analytics-11.2.0_949f037cd41603f4165582f6b90679e1a7923ca2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.3.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="27.0.3"
+        sha1="4a26a1154d053ab11aaf4c3967c42a4d66390991">
+        <dex dex="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-fragment-25.3.1_808f263b5a4819d7b0fbcc0c29b413684e87fab7\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics-impl\11.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="27.0.3"
+        sha1="3da345d7c08a7e9d83a34d8723057624b941c0ea">
+        <dex dex="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-analytics-impl-11.2.0_53439aaccdf1f576f6ae400b9b200bcbd48e227b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.3.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="27.0.3"
+        sha1="45f697922e6f072daa12f8a2995dc77ab03c11da">
+        <dex dex="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-media-compat-25.3.1_d177d5a147d4bb45f80d52863e39f27c261f8942\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Rafael\.gradle\caches\modules-2\files-2.1\com.github.bumptech.glide\glide\3.7.0\9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4\glide-3.7.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="27.0.3"
+        sha1="9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4">
+        <dex dex="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\transforms\dex\debug\folders\1000\10\glide-3.7.0_a21caba6360a29d52b012e05470d25763f6b3f23\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.3.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="27.0.3"
+        sha1="efb8cb62d47d157c29d1521daac7eefd4cb881ee">
+        <dex dex="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-25.3.1_27a066c247c9c9d521a5a76719ff794db5c2047f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\exploded-aar\com.google.firebase\firebase-database\11.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="27.0.3"
+        sha1="76a7a625df0e9027b53dbed6e9ba9a6031a42e39">
+        <dex dex="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-database-11.2.0_6654e45809a1eb5d42a3b10ba303b9700f8ed1e4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.3.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="27.0.3"
+        sha1="6ef31f1555bb4cc513ec8d52711365a8b89f3600">
+        <dex dex="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-utils-25.3.1_3a65166073da5f6c4a185eefef66ae2549e7eb71\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\exploded-aar\com.android.support\design\25.3.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="27.0.3"
+        sha1="38789e20ace9ab7dbd00554bd2673ab424478d3b">
+        <dex dex="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-25.3.1_6ce6caf72889ee36aed3cf929b98451f31f9599c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\11.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="27.0.3"
+        sha1="7b4dc2d9e39fb8ec5ddca9b3b3cb7c627690f3a6">
+        <dex dex="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-tasks-11.2.0_45b1255368608a73d2256c54c6f17de5ab681ac7\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\25.3.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="27.0.3"
+        sha1="914f5d3e3ace66080e59613708f06d129a222e25">
+        <dex dex="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-cardview-v7-25.3.1_f5b428fb5560eb79555843aa3ccf8ee9f09aa150\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="27.0.3"
+        sha1="519e7aaec3ebdd2f0bcc53ce17a63b1885b616ea">
+        <dex dex="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_6c65c8c4664a8c796b67b6d1d5e48447af669eb0\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\exploded-aar\com.google.firebase\firebase-crash\11.2.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="27.0.3"
+        sha1="a2a935bcf7d7c529f04dc89905d1ddf678d5e692">
+        <dex dex="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-crash-11.2.0_96877b0ca6367af45da1025e8c222044e77cf7b9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.3.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="27.0.3"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="R:\Dropbox\Rafael\Proyectos\AndroidStudioProjects\CateonCook\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-25.3.1_239a977eb8cc65161eb9746c949fd21a74d459ed\classes.dex" />
+    </item>
+
+</items>
