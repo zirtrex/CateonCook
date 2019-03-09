@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="net.inlanet.cateoncook.Fragments.FinanciamientoFragment"
-    android:id="@+id/fragment_financiamiento_root"
     android:background="@drawable/fondo_financiemientos">
 
     <LinearLayout
