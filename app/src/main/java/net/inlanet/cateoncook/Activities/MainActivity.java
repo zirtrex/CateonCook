@@ -19,9 +19,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -71,6 +73,8 @@ public class MainActivity extends AppCompatActivity
     Double montoTotal = 0.00;
 
     List<Cart> lCart;
+
+    ImageView ly;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -168,6 +172,16 @@ public class MainActivity extends AppCompatActivity
         lCart = new LinkedList<Cart>();
 
         getCart();
+
+        ly = (ImageView) findViewById(R.id.ivMain);
+
+        String imgUrl = "https://firebasestorage.googleapis.com/v0/b/cateoncook.appspot.com/o/app_fondo_reducido.jpg?alt=media&token=d92070f6-6c16-409e-b0eb-01d81544d397";
+
+        Glide.with(getApplicationContext())
+                .load(imgUrl)
+                .centerCrop()
+                .placeholder(R.drawable.load)
+                .into(ly);
 
     }
 

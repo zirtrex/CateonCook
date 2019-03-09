@@ -11,10 +11,12 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -54,6 +56,8 @@ public class ChequeFragment extends Fragment {
 
     Double montoTotal = 0.00;
     int nroChequesSeleccionado;
+
+    ImageView ly;
 
     public ChequeFragment() {
         // Required empty public constructor
@@ -114,6 +118,16 @@ public class ChequeFragment extends Fragment {
             }
 
         });
+
+        ly = (ImageView) view.findViewById(R.id.ivMain);
+
+        String imgUrl = "https://firebasestorage.googleapis.com/v0/b/cateoncook.appspot.com/o/fondo_amarillo_reducido.jpg?alt=media&token=2ecb8b3e-5621-4c2a-b6a4-475822bb0ac4";
+
+        Glide.with(getActivity().getApplicationContext())
+                .load(imgUrl)
+                .centerCrop()
+                .placeholder(R.drawable.load)
+                .into(ly);
 
         return view;
     }

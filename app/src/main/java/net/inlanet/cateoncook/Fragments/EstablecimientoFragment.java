@@ -15,10 +15,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -58,6 +60,8 @@ public class EstablecimientoFragment extends Fragment implements View.OnClickLis
             tvTelQuito, tvTelGuayaquil, tvTelCuenca, tvNota;
 
     String tarjetaSeleccionada;
+
+    ImageView ly;
 
     public EstablecimientoFragment() {
         // Required empty public constructor
@@ -125,6 +129,16 @@ public class EstablecimientoFragment extends Fragment implements View.OnClickLis
         tvTelQuito.setOnClickListener(this);
         tvTelGuayaquil.setOnClickListener(this);
         tvTelCuenca.setOnClickListener(this);
+
+        ly = (ImageView) view.findViewById(R.id.ivMain);
+
+        String imgUrl = "https://firebasestorage.googleapis.com/v0/b/cateoncook.appspot.com/o/fondo_amarillo_reducido.jpg?alt=media&token=2ecb8b3e-5621-4c2a-b6a4-475822bb0ac4";
+
+        Glide.with(getActivity().getApplicationContext())
+                .load(imgUrl)
+                .centerCrop()
+                .placeholder(R.drawable.load)
+                .into(ly);
 
         return view;
     }

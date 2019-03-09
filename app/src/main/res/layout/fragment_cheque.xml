@@ -2,20 +2,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="net.inlanet.cateoncook.Fragments.ChequeFragment"
-    android:background="@drawable/fondo_financiemientos">
+    tools:context="net.inlanet.cateoncook.Fragments.ChequeFragment">
+
+    <ImageView
+        android:id="@+id/ivMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        tools:ignore="ContentDescription" />
 
     <!-- TODO: -->
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:padding="25dp">
 
         <Spinner
+            android:id="@+id/spnrNumeroCheques"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/spnrNumeroCheques"
             android:layout_weight="1" />
 
         <GridLayout
@@ -27,17 +34,17 @@
             android:useDefaultMargins="true">
 
             <TextView
-                android:text="Monto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical" />
+                android:layout_gravity="center_vertical"
+                android:text="Monto" />
 
             <TextView
-                android:text="US$"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/tvMonto"
-                android:layout_gravity="right|center_vertical" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center_vertical"
+                android:text="US$" />
 
         </GridLayout>
 
@@ -50,17 +57,17 @@
             android:useDefaultMargins="true">
 
             <TextView
-                android:text="40% de entrada"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical" />
+                android:layout_gravity="center_vertical"
+                android:text="40% de entrada" />
 
             <TextView
-                android:text="US$"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/tvEntrada"
-                android:layout_gravity="right|center_vertical" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center_vertical"
+                android:text="US$" />
 
         </GridLayout>
 
@@ -73,87 +80,17 @@
             android:useDefaultMargins="true">
 
             <TextView
-                android:text="Saldo restante"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal" />
-
-            <TextView
-                android:text="US$"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvSaldoRestante"
-                android:layout_gravity="right|center_vertical" />
-
-        </GridLayout>
-
-        <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:columnCount="2"
-            android:rowCount="1"
-            android:useDefaultMargins="true">
-
-            <TextView
-                android:text="Intereses"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal" />
-
-            <TextView
-                android:text="US$"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvInteres"
-                android:layout_gravity="right|center_vertical" />
-
-        </GridLayout>
-
-        <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:columnCount="2"
-            android:rowCount="1"
-            android:useDefaultMargins="true">
-
-            <TextView
-                android:text="Total a pagar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal" />
-
-            <TextView
-                android:text="US$"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvTotalPagar"
-                android:layout_gravity="right|center_vertical" />
-
-        </GridLayout>
-
-        <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:columnCount="2"
-            android:rowCount="1"
-            android:useDefaultMargins="true">
-
-            <TextView
-                android:text="# Cheques de"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:id="@+id/tvNumeroCheques" />
+                android:text="Saldo restante" />
 
             <TextView
-                android:text="US$"
+                android:id="@+id/tvSaldoRestante"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvMontoCheque"
-                android:layout_gravity="right|center_vertical" />
+                android:layout_gravity="right|center_vertical"
+                android:text="US$" />
 
         </GridLayout>
 
@@ -166,15 +103,84 @@
             android:useDefaultMargins="true">
 
             <TextView
-                android:text="Con factor al: 0.00%"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvPorcentajeInteres"
-                android:layout_columnSpan="2"
-                android:layout_gravity="center_vertical" />
+                android:layout_gravity="center_horizontal"
+                android:text="Intereses" />
+
+            <TextView
+                android:id="@+id/tvInteres"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center_vertical"
+                android:text="US$" />
 
         </GridLayout>
 
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:columnCount="2"
+            android:rowCount="1"
+            android:useDefaultMargins="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Total a pagar" />
+
+            <TextView
+                android:id="@+id/tvTotalPagar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center_vertical"
+                android:text="US$" />
+
+        </GridLayout>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:columnCount="2"
+            android:rowCount="1"
+            android:useDefaultMargins="true">
+
+            <TextView
+                android:id="@+id/tvNumeroCheques"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="# Cheques de" />
+
+            <TextView
+                android:id="@+id/tvMontoCheque"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center_vertical"
+                android:text="US$" />
+
+        </GridLayout>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:columnCount="2"
+            android:rowCount="1"
+            android:useDefaultMargins="true">
+
+            <TextView
+                android:id="@+id/tvPorcentajeInteres"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_columnSpan="2"
+                android:layout_gravity="center_vertical"
+                android:text="Con factor al: 0.00%" />
+
+        </GridLayout>
 
 
     </LinearLayout>

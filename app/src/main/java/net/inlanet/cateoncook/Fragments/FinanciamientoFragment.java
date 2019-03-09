@@ -9,7 +9,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import net.inlanet.cateoncook.Activities.R;
 import net.inlanet.cateoncook.Adapters.FinanciamientoRVAdapter;
@@ -27,6 +30,8 @@ public class FinanciamientoFragment extends Fragment {
     TextView tvMontoTotal;
     Double montoTotal = 0.00;
 
+    ImageView ly;
+
     public FinanciamientoFragment() {
     }
 
@@ -41,6 +46,16 @@ public class FinanciamientoFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_financiamiento, container, false);
 
         actualizarMontoCart();
+
+        ly = (ImageView) view.findViewById(R.id.ivMain);
+
+        String imgUrl = "https://firebasestorage.googleapis.com/v0/b/cateoncook.appspot.com/o/fondo_amarillo_reducido.jpg?alt=media&token=2ecb8b3e-5621-4c2a-b6a4-475822bb0ac4";
+
+        Glide.with(getActivity().getApplicationContext())
+                .load(imgUrl)
+                .centerCrop()
+                .placeholder(R.drawable.load)
+                .into(ly);
 
         return view;
     }

@@ -2,23 +2,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="net.inlanet.cateoncook.Fragments.EstablecimientoFragment"
-    android:background="@drawable/fondo_financiemientos">
+    tools:context="net.inlanet.cateoncook.Fragments.EstablecimientoFragment">
+
+    <ImageView
+        android:id="@+id/ivMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        tools:ignore="ContentDescription" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:padding="25dp">
 
             <Spinner
+                android:id="@+id/spnrTarjetas"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/spnrTarjetas"
                 android:layout_weight="1"
                 android:backgroundTint="@color/colorPrimaryDark" />
 
@@ -31,15 +38,15 @@
                 android:useDefaultMargins="true">
 
                 <TextView
-                    android:text="Caducidad de Autorización"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical" />
+                    android:layout_gravity="center_vertical"
+                    android:text="Caducidad de Autorización" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:id="@+id/tvCaducidad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="right|center_vertical" />
 
             </GridLayout>
@@ -53,15 +60,15 @@
                 android:useDefaultMargins="true">
 
                 <TextView
-                    android:text="Código de Establecimiento"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical" />
+                    android:layout_gravity="center_vertical"
+                    android:text="Código de Establecimiento" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:id="@+id/tvCodigoEstablecimiento"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="right|center_vertical" />
 
             </GridLayout>
@@ -75,15 +82,15 @@
                 android:useDefaultMargins="true">
 
                 <TextView
-                    android:text="Código de 2 meses de gracias"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal" />
+                    android:layout_gravity="center_horizontal"
+                    android:text="Código de 2 meses de gracias" />
 
                 <TextView
+                    android:id="@+id/tvCodigo2MesesGracia"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/tvCodigo2MesesGracia"
                     android:layout_gravity="right|center_vertical" />
 
             </GridLayout>
@@ -97,41 +104,41 @@
                 android:useDefaultMargins="true">
 
                 <TextView
-                    android:text="Teléfonos"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_rowSpan="3"
                     android:layout_gravity="center_vertical"
-                    android:layout_rowSpan="3"/>
+                    android:text="Teléfonos" />
 
                 <TextView
-                    android:text="Quito"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Quito" />
+
+                <TextView
+                    android:id="@+id/tvTelQuito"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/tvTelQuito" />
+                    android:text="Guayaquil" />
 
                 <TextView
-                    android:text="Guayaquil"
+                    android:id="@+id/tvTelGuayaquil"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/tvTelGuayaquil" />
+                    android:text="Cuenca" />
 
                 <TextView
-                    android:text="Cuenca"
+                    android:id="@+id/tvTelCuenca"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tvTelCuenca" />
 
             </GridLayout>
 
@@ -144,14 +151,14 @@
                 android:useDefaultMargins="true">
 
                 <TextView
-                    android:text="Nota"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:text="Nota" />
 
                 <TextView
+                    android:id="@+id/tvNota"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/tvNota"
                     android:layout_gravity="center_vertical" />
 
             </GridLayout>
