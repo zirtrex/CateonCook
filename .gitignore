@@ -5,5 +5,7 @@
 /.idea/libraries
 .DS_Store
 /build
+/app/build
 /captures
 .externalNativeBuild
+cateon_cook_key.jks
