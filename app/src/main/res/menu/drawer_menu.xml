@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
-        <item
+        <!--<item
             android:id="@+id/nav_productos"
             android:icon="@drawable/checklist"
             android:title="Productos" />
@@ -25,7 +25,7 @@
         <item
             android:id="@+id/nav_comisiones"
             android:icon="@drawable/get_money"
-            android:title="Comisiones" />
+            android:title="Comisiones" />-->
     </group>
 
 </menu>

@@ -17,7 +17,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutResource());
 
-        toolbar = (Toolbar) findViewById(R.id.tool_bar); // Attaching the Fragments to the toolbar object
+        //toolbar = (Toolbar) findViewById(R.id.tool_bar); // Attaching the Fragments to the toolbar object
         if(toolbar != null) {
             toolbar.setLogo(R.mipmap.ic_launcher);
             setSupportActionBar(toolbar);

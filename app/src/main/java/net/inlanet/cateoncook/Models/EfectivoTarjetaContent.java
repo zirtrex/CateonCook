@@ -52,10 +52,10 @@ public class EfectivoTarjetaContent {
 
         if(this.tasaInteres != null) {
 
-            tvConsumos = this.montoTotal - this.efectivo;
-            tvSubTotalConsumos = this.montoTotal - this.efectivo;
-            tvIVA = this.montoTotal * 0.12;
-            tvTotalConsumos = tvSubTotalConsumos + tvIVA;
+            tvTotalConsumos = this.montoTotal - this.efectivo;
+            tvConsumos = tvTotalConsumos / 1.12;
+            tvSubTotalConsumos = tvTotalConsumos / 1.12;
+            tvIVA = tvTotalConsumos - tvConsumos;
             tvInteresFinanciamientoDiferido = (tvTotalConsumos * tasaInteres) / 100;
             tvTotal = tvTotalConsumos + tvInteresFinanciamientoDiferido;
             montoCuota = tvTotal / nroCuotas;
@@ -64,10 +64,10 @@ public class EfectivoTarjetaContent {
             tvFactor = "Con factor al: " + String.valueOf(tasaInteres) + "%";
 
             String convertMontoCuota = NumberFormat.getCurrencyInstance().format(montoCuota);
-            tvResumenCuotas = nroCuotas + "INVERSIONES DE " + convertMontoCuota;
+            tvResumenCuotas = nroCuotas + " FINANCIAMIENTOS DE " + convertMontoCuota;
 
             String convertInteresMensual = NumberFormat.getCurrencyInstance().format(interesMensual);
-            tvInteresMensual = "INTERÉS MENSUAL DE: " + convertInteresMensual;
+            tvInteresMensual = " INTERÉS MENSUAL DE: " + convertInteresMensual;
         }
     }
 
@@ -112,4 +112,5 @@ public class EfectivoTarjetaContent {
     public String getTvInteresMensual() {
         return tvInteresMensual;
     }
+
 }

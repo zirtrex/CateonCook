@@ -1,14 +1,9 @@
 *.iml
 .gradle
-.idea
 /local.properties
 /.idea/workspace.xml
 /.idea/libraries
 .DS_Store
-/app/build
 /build
-/gradle
 /captures
 .externalNativeBuild
-google-services.json
-cateon_cook_key.jks

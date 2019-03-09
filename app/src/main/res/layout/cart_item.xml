@@ -25,7 +25,7 @@
         android:layout_toRightOf="@+id/ivCartImagenProducto"
         android:layout_marginTop="20dip"
         tools:text="NombreProducto"
-        />
+        android:textColor="@color/cardview_light_background" />
 
     <TextView
         android:id="@+id/tvCartCantidad"
@@ -37,7 +37,8 @@
         tools:text="Cantidad"
         android:layout_below="@+id/tvCartNombreProducto"
         android:layout_toEndOf="@+id/ivCartImagenProducto"
-        android:layout_toRightOf="@+id/ivCartImagenProducto" />
+        android:layout_toRightOf="@+id/ivCartImagenProducto"
+        android:textColor="@color/cardview_light_background" />
 
     <TextView
         android:id="@+id/tvCartPrecio"
@@ -49,6 +50,7 @@
         tools:text="Precio"
         android:layout_below="@+id/tvCartCantidad"
         android:layout_toEndOf="@+id/ivCartImagenProducto"
-        android:layout_toRightOf="@+id/ivCartImagenProducto" />
+        android:layout_toRightOf="@+id/ivCartImagenProducto"
+        android:textColor="@color/cardview_light_background" />
 
 </RelativeLayout>

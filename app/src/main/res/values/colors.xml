@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#673ab7</color>
-    <color name="colorPrimaryDark">#512DA8</color>
-    <color name="colorAccent">#FFC107</color>
-    <color name="primary">#673AB7</color>
-    <color name="primary_dark">#512DA8</color>
-    <color name="primary_light">#D1C4E9</color>
-    <color name="accent">#FFC107</color>
+    <color name="colorPrimary">#4167B2</color>
+    <color name="colorPrimaryDark">#1f4e79</color>
+    <color name="colorAccent">#c9c9c9</color>
+    <color name="primary">#4167B2</color>
+    <color name="primary_dark">#1F4E79</color>
+    <color name="primary_light">#d1c4e9</color>
+    <color name="accent">#4ECB8F</color>
     <color name="primary_text">#212121</color>
     <color name="secondary_text">#757575</color>
     <color name="icons">#FFFFFF</color>
-    <color name="divider">#BDBDBD</color>
+    <color name="divider">#bdbdbd</color>
+    <color name="color_card_inicio">#751f4e79</color>
+    <color name="color_background_login">#4ecb8f</color>
+    <color name="color_button_login">#33cb00</color>
+    <color name="color_cart_inicio">#1f4e79</color>
 </resources>

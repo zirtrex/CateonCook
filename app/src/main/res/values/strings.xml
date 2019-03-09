@@ -4,9 +4,12 @@
     <!-- Change the following strings as required -->
     <string name="title_fragment_login">Ingresar</string>
     <string name="title_fragment_productos">Productos</string>
+    <string name="title_fragment_producto_detalle">Detalle de Productos</string>
     <string name="title_fragment_cart">Productos Seleccionados</string>
     <string name="title_fragment_financiamiento">Financiamiento</string>
     <string name="title_fragment_formas_de_pago">Formas de Pago</string>
+    <string name="title_fragment_catalogo">Catálogo</string>
+    <string name="title_fragment_herramientas">Herramientas</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Correo</string>

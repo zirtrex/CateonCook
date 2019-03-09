@@ -3,16 +3,12 @@ package net.inlanet.cateoncook.Fragments;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.drawable.LayerDrawable;
 import android.support.annotation.NonNull;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -30,21 +26,26 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import net.inlanet.cateoncook.Activities.MainActivity;
 import net.inlanet.cateoncook.Activities.R;
-import net.inlanet.cateoncook.Interfaces.OnFragmentInteractionListener;
+import net.inlanet.cateoncook.Interfaces.CartInteractionListener;
+import net.inlanet.cateoncook.Interfaces.CurrentProductInteractionListener;
 import net.inlanet.cateoncook.Models.Cart;
-import net.inlanet.cateoncook.Util.Utils;
+import net.inlanet.cateoncook.Models.Producto;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
-public class ProductDetailFragment extends Fragment implements View.OnClickListener{
-
-    private OnFragmentInteractionListener mListener;
+public class ProductDetailFragment extends Fragment
+        implements View.OnClickListener, CurrentProductInteractionListener {
 
     FirebaseAuth.AuthStateListener mAuthListener;
 
+    MainActivity mainActivity;
+
     View view;
+
+    Producto currentProduct;
 
     String nombreProducto, imgUrl;
     Double precio;
@@ -52,8 +53,8 @@ public class ProductDetailFragment extends Fragment implements View.OnClickListe
     private int mQuantity = 1;
     private double mTotalPrice;
 
-    private ImageView tvImagenProducto;
-    private TextView tvNombreProducto, tvPrecio, tvCostoTotal;
+    ImageView tvImagenProducto;
+    TextView tvNombreProducto, tvPrecio, tvCostoTotal;
     Button btnAgregarProducto, btnIncrement, btnDecrement;
 
     public ProductDetailFragment() {
@@ -62,7 +63,6 @@ public class ProductDetailFragment extends Fragment implements View.OnClickListe
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -86,22 +86,20 @@ public class ProductDetailFragment extends Fragment implements View.OnClickListe
         tvImagenProducto = (ImageView) view.findViewById(R.id.ivCartImagenProducto);
         tvCostoTotal = (TextView) view.findViewById(R.id.tvCostoTotal);
 
-        if (getArguments() != null) {
+        if (currentProduct != null) {
 
-            Double montoTotal = getArguments().getDouble("montoTotal");
-
-            nombreProducto = getArguments().getString("nombreProducto");
-            precio = getArguments().getDouble("precio");
-            imgUrl = getArguments().getString("imgUrl");
+            nombreProducto = currentProduct.getNombreProducto();
+            precio = currentProduct.getPrecio() * 1.12;
+            //double precioIVA = precio * 1.12;
+            String convertPrecioIVA = NumberFormat.getCurrencyInstance().format(precio);
+            imgUrl = currentProduct.getImgUrl();
 
             tvNombreProducto = (TextView) view.findViewById(R.id.tvNombreProducto);
             tvNombreProducto.setText(nombreProducto);
 
             tvPrecio = (TextView) view.findViewById(R.id.tvPrecio);
-            DecimalFormat precision = new DecimalFormat("0.00");
-            tvPrecio.setText("$" + precision.format(precio));
 
-            getActivity().setTitle(nombreProducto);
+            tvPrecio.setText(convertPrecioIVA);
 
             Glide.with(this)
                     .load(imgUrl)
@@ -109,20 +107,19 @@ public class ProductDetailFragment extends Fragment implements View.OnClickListe
                     .placeholder(R.drawable.load)
                     .into(tvImagenProducto);
 
+            btnAgregarProducto = (Button) view.findViewById(R.id.btnAgregarProducto);
+            btnIncrement = (Button) view.findViewById(R.id.btnIncrement);
+            btnDecrement = (Button) view.findViewById(R.id.btnDecrement);
+
+            btnAgregarProducto.setOnClickListener(this);
+            btnIncrement.setOnClickListener(this);
+            btnDecrement.setOnClickListener(this);
+
+            if (mQuantity == 1){
+                mTotalPrice = precio;
+                displayCost(mTotalPrice);
+            }
         }
-        btnAgregarProducto = (Button) view.findViewById(R.id.btnAgregarProducto);
-        btnIncrement = (Button) view.findViewById(R.id.btnIncrement);
-        btnDecrement = (Button) view.findViewById(R.id.btnDecrement);
-
-        btnAgregarProducto.setOnClickListener(this);
-        btnIncrement.setOnClickListener(this);
-        btnDecrement.setOnClickListener(this);
-
-        if (mQuantity == 1){
-            mTotalPrice = precio;
-            displayCost(mTotalPrice);
-        }
-
         return view;
     }
 
@@ -148,28 +145,24 @@ public class ProductDetailFragment extends Fragment implements View.OnClickListe
     }
 
     public void increment(){
-
-        precio = getArguments().getDouble("precio");
         mQuantity = mQuantity + 1;
         displayQuantity(mQuantity);
-        mTotalPrice = mQuantity * precio;
+        mTotalPrice = mQuantity * this.precio;
         displayCost(mTotalPrice);
     }
 
     public void decrement(){
         if (mQuantity > 1){
-
             mQuantity = mQuantity - 1;
             displayQuantity(mQuantity);
-            mTotalPrice = mQuantity * precio;
+            mTotalPrice = mQuantity * this.precio;
             displayCost(mTotalPrice);
-
         }
     }
 
     private void displayQuantity(int numberOfItems) {
-        TextView quantityTextView = (TextView) view.findViewById(R.id.tvCantidad);
-        quantityTextView.setText(String.valueOf(numberOfItems));
+        TextView tvCantidad = (TextView) view.findViewById(R.id.tvCantidad);
+        tvCantidad.setText(String.valueOf(numberOfItems));
     }
 
     private void displayCost(double totalPrice) {
@@ -180,32 +173,25 @@ public class ProductDetailFragment extends Fragment implements View.OnClickListe
 
     public void addToCart() {
 
-        // Create an AlertDialog.Builder and set the message, and click listeners
-        // for the postivie and negative buttons on the dialog.
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
 
         builder.setMessage("¿Desea agregar el producto?");
 
         builder.setPositiveButton("Agregar", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-
                 addValuesToCart();
             }
         });
         builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                // User clicked the "Cancel" button, so dismiss the dialog
-                // and continue editing the items.
                 if (dialog != null) {
                     dialog.dismiss();
                 }
             }
         });
 
-        // Create and show the AlertDialog
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
-
     }
 
     private void addValuesToCart() {
@@ -234,20 +220,11 @@ public class ProductDetailFragment extends Fragment implements View.OnClickListe
             Toast.makeText(getContext(), "Producto agregado correctamente",
                     Toast.LENGTH_LONG).show();
 
-        }else {
 
+        }else {
             Log.i("session" , "Sin usuario activo");
             Toast.makeText(getContext(), "Necesitas iniciar sesión para guardar los datos.",
                     Toast.LENGTH_LONG).show();
-
-        }
-
-    }
-
-    private void updateNotificationsBadge(int count) {
-
-        if (null != mListener) {
-            mListener.updateNotificationsBadge(count);
         }
     }
 
@@ -273,8 +250,8 @@ public class ProductDetailFragment extends Fragment implements View.OnClickListe
 
                 count[0] = (int) dataSnapshot.getChildrenCount();
                 updateNotificationsBadge(count[0]);
-                //Log.w("Datos:", Long.toString(dataSnapshot.getChildrenCount()));
 
+                //Log.w("Datos:", Long.toString(dataSnapshot.getChildrenCount()));
             }
 
             @Override
@@ -282,6 +259,15 @@ public class ProductDetailFragment extends Fragment implements View.OnClickListe
                 //count = 0;
             }
         });
+    }
+
+    private void updateNotificationsBadge(final int count) {
+
+        if (null != mainActivity) {
+            mainActivity.updateNotificationsBadge(count);
+            mainActivity.setCurrentProduct(null);
+            //getActivity().onBackPressed();
+        }
 
     }
 
@@ -306,17 +292,29 @@ public class ProductDetailFragment extends Fragment implements View.OnClickListe
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof MainActivity) {
+            mainActivity = (MainActivity) context;
+            setCurrentProduct(mainActivity.getCurrentProduct());
+            Log.w("Attach", "Detalle de Producto Atachado");
         } else {
             throw new RuntimeException(context.toString()
-                    + "Se debe implementar OnFragmentInteractionListener");
+                    + "Se debe implementar CartInteractionListener");
         }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
+        mainActivity = null;
+    }
+
+    @Override
+    public void setCurrentProduct(Producto product) {
+        this.currentProduct = product;
+    }
+
+    @Override
+    public Producto getCurrentProduct() {
+        return this.currentProduct;
     }
 }

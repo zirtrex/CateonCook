@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="net.inlanet.cateoncook.Activities.net.inlanet.cateoncook.Fragments.CartFragment">
+    tools:context="net.inlanet.cateoncook.Fragments.CartFragment"
+    android:background="@color/color_cart_inicio">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -36,7 +37,8 @@
                     android:layout_weight="2"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Precio Total"/>
+                    android:text="Precio Total"
+                    android:textColor="@color/cardview_light_background" />
 
                 <TextView
                     android:layout_width="100dp"
@@ -45,7 +47,8 @@
                     android:hint="Precio Total"
                     android:gravity="center"
                     android:layout_height="wrap_content"
-                    android:id="@+id/tvCartPrecioTotal" />
+                    android:id="@+id/tvCartPrecioTotal"
+                    android:textColor="@color/cardview_light_background" />
             </TableRow>
 
         </TableLayout>
@@ -60,25 +63,15 @@
                 android:id="@+id/btnFinanciamiento"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ver Financiamientos" />
+                android:text="Ver Financiamientos"
+                android:textColor="@android:color/background_light" />
 
             <Button
-                android:id="@+id/btnFormasDePago"
+                android:id="@+id/btnCheques"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ver Formas de Pago"/>
-
-            <Button
-                android:id="@+id/btnRegalos"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ver Regalos"/>
-
-            <Button
-                android:id="@+id/btnComisiones"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ver Comisiones"/>
+                android:text="Ver Cheques"
+                android:textColor="@android:color/background_light" />
 
             <FrameLayout
                 android:layout_width="match_parent"

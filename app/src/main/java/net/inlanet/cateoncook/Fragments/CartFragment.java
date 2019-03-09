@@ -2,10 +2,10 @@ package net.inlanet.cateoncook.Fragments;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -28,8 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import net.inlanet.cateoncook.Activities.R;
 import net.inlanet.cateoncook.Adapters.CartAdapter;
-import net.inlanet.cateoncook.Interfaces.OnFragmentInteractionListener;
-import net.inlanet.cateoncook.Models.InversionesContent;
+import net.inlanet.cateoncook.Interfaces.CartInteractionListener;
 import net.inlanet.cateoncook.Models.Cart;
 
 import java.text.NumberFormat;
@@ -38,7 +37,7 @@ import java.util.List;
 
 public class CartFragment extends Fragment implements View.OnClickListener{
 
-    OnFragmentInteractionListener mListener;
+    CartInteractionListener cartInteractionListener;
     FirebaseAuth.AuthStateListener mAuthListener;
 
     View view;
@@ -46,7 +45,8 @@ public class CartFragment extends Fragment implements View.OnClickListener{
     RecyclerView rvCart;
     Double cartPrecioTotal = 0.00;
     List<Cart> lCart;
-    Button btnFinanciamiento, btnFormaPago, btnRegalos, btnComisiones;
+    Button btnFinanciamiento, btnCheques;
+    TabLayout tabLayout;
 
     public CartFragment() {
     }
@@ -61,7 +61,7 @@ public class CartFragment extends Fragment implements View.OnClickListener{
 
         view = inflater.inflate(R.layout.fragment_cart, container, false);
 
-        getActivity().setTitle(getText(R.string.title_fragment_cart));
+        tabLayout = (TabLayout) getActivity().findViewById(R.id.tabs);
 
         mAuthListener = new FirebaseAuth.AuthStateListener(){
             @Override
@@ -151,14 +151,8 @@ public class CartFragment extends Fragment implements View.OnClickListener{
         btnFinanciamiento = (Button) view.findViewById(R.id.btnFinanciamiento);
         btnFinanciamiento.setOnClickListener(this);
 
-        btnFormaPago = (Button) view.findViewById(R.id.btnFormasDePago);
-        btnFormaPago.setOnClickListener(this);
-
-        btnRegalos = (Button) view.findViewById(R.id.btnRegalos);
-        btnRegalos.setOnClickListener(this);
-
-        btnComisiones = (Button) view.findViewById(R.id.btnComisiones);
-        btnComisiones.setOnClickListener(this);
+        btnCheques = (Button) view.findViewById(R.id.btnCheques);
+        btnCheques.setOnClickListener(this);
 
         return view;
 
@@ -203,9 +197,9 @@ public class CartFragment extends Fragment implements View.OnClickListener{
         String convertPrice = NumberFormat.getCurrencyInstance().format(this.cartPrecioTotal);
         tvCartPrecioTotal.setText(convertPrice);
 
-        if (null != mListener) {
-            mListener.saveMonto(this.cartPrecioTotal);
-            mListener.updateNotificationsBadge(lcart.size());
+        if (null != cartInteractionListener) {
+            cartInteractionListener.saveMonto(this.cartPrecioTotal);
+            cartInteractionListener.updateNotificationsBadge(lcart.size());
         }
 
     }
@@ -221,29 +215,35 @@ public class CartFragment extends Fragment implements View.OnClickListener{
         switch (view.getId()) {
             case R.id.btnFinanciamiento:
 
-                Fragment fFinanciamiento = new FinanciamientoFragment();
-                fFinanciamiento.setArguments(args);
+                //getActivity().onBackPressed();
+
+                if (null != cartInteractionListener) {
+                    cartInteractionListener.saveMonto(this.cartPrecioTotal);
+                }
+
+                //Fragment fFinanciamiento = new FinanciamientoFragment();
+                //fFinanciamiento.setArguments(args);
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.content_main, fFinanciamiento,"Fragment Financiamiento")
-                        .addToBackStack(null)
+                        .remove(this)
                         .commit();
 
-                break;
-            case R.id.btnFormasDePago:
+                tabLayout.getTabAt(1).select();
 
-                Fragment fFormasPago = new FormasPagoFragment();
+                break;
+            case R.id.btnCheques:
+
+                if (null != cartInteractionListener) {
+                    cartInteractionListener.saveMonto(this.cartPrecioTotal);
+                }
+
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.content_main, fFormasPago,"Fragment Formas de Pago")
-                        .addToBackStack(null)
+                        .remove(this)
                         .commit();
 
-                break;
-            case R.id.btnRegalos:
+                tabLayout.getTabAt(2).select();
 
                 break;
-            case R.id.btnComisiones:
 
-                break;
             default:
 
         }
@@ -252,18 +252,18 @@ public class CartFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof CartInteractionListener) {
+            cartInteractionListener = (CartInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + "Se debe implementar OnFragmentInteractionListener");
+                    + "Se debe implementar CartInteractionListener");
         }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
+        cartInteractionListener = null;
     }
 
 }

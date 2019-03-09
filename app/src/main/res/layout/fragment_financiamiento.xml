@@ -1,27 +1,37 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="net.inlanet.cateoncook.Fragments.FinanciamientoFragment">
+    tools:context="net.inlanet.cateoncook.Fragments.FinanciamientoFragment"
+    android:id="@+id/fragment_financiamiento_root"
+    android:background="@drawable/fondo_financiemientos">
 
-    <TextView
-        android:text="TextView"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvMontoTotal" />
+        android:layout_height="match_parent">
 
-    <android.support.v7.widget.RecyclerView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/rvFinanciamientos"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layoutManager="LinearLayoutManager"
-        tools:context="net.inlanet.cateoncook.Fragments.FinanciamientoFragment"
-        tools:listitem="@layout/fragment_financiamiento_item_list" />
+        <TextView
+            android:text="Seleccione el carro de compra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvMontoTotal"
+            android:textSize="24sp"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <android.support.v7.widget.RecyclerView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/rvFinanciamientos"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:layoutManager="LinearLayoutManager"
+            tools:context="net.inlanet.cateoncook.Fragments.FinanciamientoFragment"
+            tools:listitem="@layout/fragment_financiamiento_item_list"
+            android:layout_gravity="center" />
 
 
-</LinearLayout>
+    </LinearLayout>
+</FrameLayout>

@@ -2,10 +2,12 @@ package net.inlanet.cateoncook.Activities;
 
 import android.content.Intent;
 import android.graphics.drawable.LayerDrawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -20,6 +22,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -29,27 +32,40 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import net.inlanet.cateoncook.Adapters.MainViewPagerAdapter;
 import net.inlanet.cateoncook.Fragments.CartFragment;
 import net.inlanet.cateoncook.Fragments.FinanciamientoFragment;
-import net.inlanet.cateoncook.Fragments.FormasPagoFragment;
-import net.inlanet.cateoncook.Fragments.LoginFragment;
-import net.inlanet.cateoncook.Fragments.ProductsFragment;
-import net.inlanet.cateoncook.Interfaces.OnFragmentInteractionListener;
+import net.inlanet.cateoncook.Fragments.TabContainerFragment;
+import net.inlanet.cateoncook.Interfaces.CartInteractionListener;
+import net.inlanet.cateoncook.Interfaces.CurrentCategoriaInteractionListener;
+import net.inlanet.cateoncook.Interfaces.CurrentProductInteractionListener;
 import net.inlanet.cateoncook.Models.Cart;
+import net.inlanet.cateoncook.Models.Producto;
 import net.inlanet.cateoncook.Util.Utils;
 
-import java.text.NumberFormat;
 import java.util.LinkedList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
-        OnFragmentInteractionListener{
+        CartInteractionListener, CurrentProductInteractionListener,
+        CurrentCategoriaInteractionListener {
 
     FirebaseAuth.AuthStateListener mAuthListener;
 
+    FragmentManager fragmentManager;
+    private TabContainerFragment tabContainerFragment;
+    private CartFragment cartFragment;
+
     TextView tvUserEmail;
     Button btnLogin, btnLogout;
+
+    DrawerLayout drawer;
+    Toolbar toolbar;
+    TabLayout tabs;
+
+    Producto producto;
+    String categoriaApp;
 
     int mNotificationsCount = 0;
     Double montoTotal = 0.00;
@@ -60,11 +76,13 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        setTitle("Inicio");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         mAuthListener = new FirebaseAuth.AuthStateListener(){
             @Override
@@ -78,12 +96,14 @@ public class MainActivity extends AppCompatActivity
                     btnLogout.setVisibility(View.VISIBLE);
                 }else {
                     Log.w("session" , "Sin usuario activo");
+                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                    startActivity(intent);
                     btnLogin.setVisibility(View.VISIBLE);
                 }
             }
         };
 
-        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
@@ -95,6 +115,18 @@ public class MainActivity extends AppCompatActivity
 
         View header = navigationView.getHeaderView(0);
 
+        if (savedInstanceState == null) {
+            // withholding the previously created fragment from being created again
+            // On orientation change, it will prevent fragment recreation
+            // its necessary to reserving the fragment stack inside each tab
+            initScreen();
+
+        } else {
+            // restoring the previously created fragment
+            // and getting the reference
+            tabContainerFragment = (TabContainerFragment) getSupportFragmentManager().findFragmentByTag("Fragment_Tab_Container");
+        }
+
         tvUserEmail = (TextView) header.findViewById(R.id.tvUserEmail);
         btnLogin = (Button) header.findViewById(R.id.btnLogin);
         btnLogout = (Button) header.findViewById(R.id.btnLogout);
@@ -105,7 +137,12 @@ public class MainActivity extends AppCompatActivity
                 if (drawer.isDrawerOpen(GravityCompat.START)) {
                     drawer.closeDrawer(GravityCompat.START);
                 }
-                getSupportFragmentManager().beginTransaction().replace(R.id.content_main, new LoginFragment()).commit();
+
+                Intent intent = new Intent(view.getContext(), LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+
             }
         });
 
@@ -113,6 +150,12 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 FirebaseAuth.getInstance().signOut();
+
+                Intent intent = new Intent(view.getContext(), LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+
                 if (drawer.isDrawerOpen(GravityCompat.START)) {
                     drawer.closeDrawer(GravityCompat.START);
                 }
@@ -122,19 +165,20 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        if(Utils.validateScreen){
-
-            Fragment miFragment = new ProductsFragment();
-            getSupportFragmentManager().beginTransaction().
-                    replace(R.id.content_main, miFragment)
-                    .addToBackStack(null).commit();
-
-            Utils.validateScreen = false;
-        }
-
         lCart = new LinkedList<Cart>();
 
         getCart();
+
+    }
+
+    private void initScreen() {
+        tabContainerFragment = new TabContainerFragment();
+
+        fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.frame_container, tabContainerFragment, "Fragment_Tab_Container")
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .commit();
 
     }
 
@@ -150,6 +194,11 @@ public class MainActivity extends AppCompatActivity
         if(mAuthListener != null){
             FirebaseAuth.getInstance().removeAuthStateListener(mAuthListener);
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 
     @Override
@@ -185,11 +234,23 @@ public class MainActivity extends AppCompatActivity
 
             case R.id.action_notifications:
 
-                Fragment fCart = new CartFragment();
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.content_main, fCart,"Fragment Cart")
-                        .addToBackStack(null)
-                        .commit();
+                cartFragment = (CartFragment) fragmentManager.findFragmentByTag("Fragment_Cart");
+
+                if(cartFragment == null){
+                    cartFragment = new CartFragment();
+                    fragmentManager.beginTransaction()
+                            .add(R.id.frame_container, cartFragment, "Fragment_Cart")
+                            .addToBackStack(null)
+                            .commit();
+                }else{
+                    if(fragmentManager.getBackStackEntryCount() > 0) {
+                        fragmentManager.popBackStack();
+                    }
+                    /*fragmentManager.beginTransaction()
+                            .remove(cartFragment)
+                           .addToBackStack("Fragment_Cart")
+                           .commit();*/
+                }
 
                 return true;
 
@@ -205,50 +266,30 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        int id = item.getItemId();
+        /*int id = item.getItemId();
 
         Fragment miFragment = null;
         boolean fragmentSeleccionado = false;
 
         if (id == R.id.nav_productos) {
 
-            miFragment = new ProductsFragment();
-            fragmentSeleccionado = true;
+            //viewPager.setCurrentItem(0);
 
         }else if (id == R.id.nav_financiamientos) {
 
-            miFragment = new FinanciamientoFragment();
-            fragmentSeleccionado = true;
+            //viewPager.setCurrentItem(1);
 
         }else if (id == R.id.nav_formas_de_pago) {
 
-            miFragment = new FormasPagoFragment();
-            fragmentSeleccionado = true;
-
-        }else if (id == R.id.nav_premios) {
-
-            miFragment = new FormasPagoFragment();
-            fragmentSeleccionado = true;
-
-        }else if (id == R.id.nav_repuestos) {
-
-            miFragment = new FormasPagoFragment();
-            fragmentSeleccionado = true;
-
-        }else if (id == R.id.nav_comisiones) {
-
-            miFragment = new FormasPagoFragment();
-            fragmentSeleccionado = true;
+            //viewPager.setCurrentItem(2);
 
         }
-
 
         if (fragmentSeleccionado){
             getSupportFragmentManager().beginTransaction().replace(R.id.content_main, miFragment)
                     .addToBackStack(null).commit();
-        }
+        }*/
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -301,18 +342,43 @@ public class MainActivity extends AppCompatActivity
         for (int i = 0; i < lcart.size(); i++)
         {
             Double price = lcart.get(i).getCartPrecioTotal();
-
             montoTotal += price;
-
         }
 
         return montoTotal;
     }
 
     @Override
+    public void setCurrentProduct(Producto product){
+        this.producto = product;
+    }
+
+    @Override
+    public Producto getCurrentProduct(){
+        return this.producto;
+    }
+
+    private static String makeFragmentName(int viewId, long id) {
+        return "android:switcher:" + viewId + ":" + id;
+    }
+
+    @Override
     public void saveMonto(Double montoTotal) {
         this.montoTotal = montoTotal;
-        Toast.makeText(getApplicationContext(), "Se ha pulsado saveMonto " + String.valueOf(montoTotal), Toast.LENGTH_SHORT).show();
+
+        int vpId = tabContainerFragment.getViewPager().getId();
+        String fragmentTag = makeFragmentName(vpId, 1);
+        MainViewPagerAdapter vpAdapter = (MainViewPagerAdapter) tabContainerFragment.getViewPager().getAdapter();
+        FinanciamientoFragment financiamientoFragment = (FinanciamientoFragment) vpAdapter.getItem(1);
+
+        if(financiamientoFragment != null){
+            financiamientoFragment.actualizarMontoCart();
+            /*Toast.makeText(getApplicationContext(),
+                    "fragmentB == null",
+                    Toast.LENGTH_SHORT).show();*/
+        }
+        Log.w("Main Activity", "Se ha pulsado saveMonto " + String.valueOf(montoTotal));
+        //Toast.makeText(getApplicationContext(), "Se ha pulsado saveMonto " + String.valueOf(montoTotal), Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -327,4 +393,22 @@ public class MainActivity extends AppCompatActivity
     public Double getMonto() {
         return this.montoTotal;
     }
+
+    @Override
+    public void setCurrentCategoria(String categoriaApp){
+        this.categoriaApp = categoriaApp;
+    }
+
+    @Override
+    public String getCurrentCategoria(){
+        return categoriaApp;
+    }
+
+    /*@Override
+    public void onFailure(@NonNull Exception exception) {
+        int errorCode = ((StorageException) exception).getErrorCode();
+        String errorMessage = exception.getMessage();
+        // test the errorCode and errorMessage, and handle accordingly
+
+    }*/
 }

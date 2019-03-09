@@ -53,7 +53,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         //Set values
         viewHolder.itemView.setTag(cart.getCartId());
         viewHolder.tvNombreProducto.setText(cart.getCartNombreProducto());
-        viewHolder.tvCantidad.setText("Quantity ordering: " + String.valueOf(cart.getCartCantidad()));
+        viewHolder.tvCantidad.setText("Cantidad: " + String.valueOf(cart.getCartCantidad()));
         viewHolder.tvPrecio.setText("$" + precision.format(cart.getCartPrecioTotal()));
 
         String poster = cart.getCartImgUrl();
