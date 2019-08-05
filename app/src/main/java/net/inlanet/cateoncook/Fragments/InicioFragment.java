@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.transition.Transition;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,10 +65,6 @@ public class InicioFragment extends Fragment implements ProductItemClickListener
         rvInicio.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvInicio.setAdapter(inicioRVAdapter);
 
-
-
-
-
         return view;
     }
 
@@ -91,9 +88,7 @@ public class InicioFragment extends Fragment implements ProductItemClickListener
                     .addToBackStack(null)
                     .commit();
 
-            Snackbar.make( view, "Elemento: " + categoria.getNombreElemento(),
-                    Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
+            Log.i("INFO", categoria.getNombreElemento().toString());
 
         }
     }
