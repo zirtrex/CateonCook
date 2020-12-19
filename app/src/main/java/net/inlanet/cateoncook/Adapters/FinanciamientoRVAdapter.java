@@ -2,7 +2,6 @@ package net.inlanet.cateoncook.Adapters;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -14,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import net.inlanet.cateoncook.Fragments.FormaPagoFragment;
-import net.inlanet.cateoncook.Fragments.ProductsFragment;
 import net.inlanet.cateoncook.Interfaces.CartInteractionListener;
 import net.inlanet.cateoncook.Models.FinanciamientoContent;
 

@@ -1,11 +1,6 @@
 package net.inlanet.cateoncook.Adapters;
 
 import android.content.Context;
-import android.os.Bundle;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,9 +11,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
-import net.inlanet.cateoncook.Activities.R;
-import net.inlanet.cateoncook.Fragments.ProductsFragment;
 import net.inlanet.cateoncook.Interfaces.ProductItemClickListener;
+import net.inlanet.cateoncook.Activities.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -95,7 +89,7 @@ public class HomeRVAdapter extends RecyclerView.Adapter<HomeRVAdapter.ViewHolder
 
                 productItemClickListener.onCategoriaItemClick(viewHolder.getAdapterPosition(), elemento);
 
-                Log.w("Datos:", elemento.getNombreElemento());
+                Log.i("Categoria Seleccionada", elemento.getNombreElemento());
 
             }
         });

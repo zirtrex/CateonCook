@@ -18,13 +18,23 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    productFlavors {
+        adicional {
+            minSdkVersion 14
+            applicationId 'net.inlanet.cateoncook'
+            targetSdkVersion 25
+            versionCode 1
+            versionName '1.1'
+            dimension 'adicional'
+        }
+    }
+    flavorDimensions "adicional"
 }
 
 dependencies {
     testImplementation 'junit:junit:4.12'
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-
     implementation 'com.android.support:appcompat-v7:25.3.1'
     implementation 'com.android.support:design:25.3.1'
     implementation 'com.android.support:support-v4:25.3.1'
@@ -35,9 +45,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:11.4.2'
     implementation 'com.google.firebase:firebase-crash:11.4.2'
     implementation 'com.crashlytics.sdk.android:crashlytics:2.9.1'
-    implementation 'com.github.bumptech.glide:glide:3.7.0' //implementation 'com.github.bumptech.glide:glide:3.7.0'
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
+    //implementation 'com.github.bumptech.glide:glide:3.7.0'
     //Pdf
-
 }
 
 apply plugin: 'com.google.gms.google-services'

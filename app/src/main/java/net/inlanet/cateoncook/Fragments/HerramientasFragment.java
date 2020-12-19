@@ -20,10 +20,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import net.inlanet.cateoncook.Activities.R;
 import net.inlanet.cateoncook.Interfaces.CartInteractionListener;
-import net.inlanet.cateoncook.Models.Cart;
 import net.inlanet.cateoncook.Models.Producto;
+import net.inlanet.cateoncook.Activities.R;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -31,8 +30,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Pattern;
 
 public class HerramientasFragment extends Fragment {
 

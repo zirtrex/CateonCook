@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,13 +26,11 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import net.inlanet.cateoncook.Activities.MainActivity;
-import net.inlanet.cateoncook.Activities.R;
-import net.inlanet.cateoncook.Interfaces.CartInteractionListener;
 import net.inlanet.cateoncook.Interfaces.CurrentProductInteractionListener;
 import net.inlanet.cateoncook.Models.Cart;
 import net.inlanet.cateoncook.Models.Producto;
+import net.inlanet.cateoncook.Activities.R;
 
-import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 public class ProductDetailFragment extends Fragment

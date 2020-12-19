@@ -5,7 +5,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,9 +26,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import net.inlanet.cateoncook.Activities.R;
 import net.inlanet.cateoncook.Interfaces.CartInteractionListener;
 import net.inlanet.cateoncook.Models.EfectivoTarjetaContent;
+import net.inlanet.cateoncook.Activities.R;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -47,7 +46,7 @@ public class FormaPagoFragment extends Fragment {
     ArrayAdapter spnrTarjetaAdapter, spnrCuotasAdapter;
 
     public static List<String> lTarjetas = new ArrayList<>();
-    public static List<Integer> lCuotas = new ArrayList<Integer>();
+    public static List<Integer> lCuotas = new ArrayList<>();
 
     Map<String, HashMap<Integer, Double>> hmTarjetas = new HashMap<String, HashMap<Integer, Double>>();
 
@@ -96,12 +95,13 @@ public class FormaPagoFragment extends Fragment {
         tvInteresMensual = (TextView) view.findViewById(R.id.tvInteresMensual);
         btnEstablecimiento = (Button) view.findViewById(R.id.btnEstablecimiento);
 
-        if(getArguments() != null) {
+        /*if(getArguments() != null) {
             nroCuotasPrevio = getArguments().getInt("nroCuotas");
+            Log.w("nroCuotasPrevio", String.valueOf(nroCuotasPrevio));
             int selectionPosition = spnrCuotasAdapter.getPosition(nroCuotasPrevio);
             Log.w("selectionPosition", String.valueOf(selectionPosition));
             spnrCuotas.setSelection(selectionPosition);
-        }
+        }*/
 
         btnGenerarPago.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -192,8 +192,8 @@ public class FormaPagoFragment extends Fragment {
 
                     hmTarjetas.put(postSnapshot.getKey(), cuotasPorcentajeInteres);
 
-                    Log.w("Datos: ", postSnapshot.getKey());
-                    Log.w("Datos: ", postSnapshot.getValue().toString());
+                    //Log.w("Datos: ", postSnapshot.getKey());
+                    //Log.w("Datos: ", postSnapshot.getValue().toString());
                 }
                 populateLTarjetas();
                 populateLCoutas();
@@ -216,6 +216,7 @@ public class FormaPagoFragment extends Fragment {
             lTarjetas.add(tarjeta.getKey());
             //Log.w("Populate Tarjetas", tarjeta.getKey());
         }
+        Collections.sort(lTarjetas, Collections.reverseOrder());
         spnrTarjetaAdapter.notifyDataSetChanged();
     }
 
@@ -226,13 +227,30 @@ public class FormaPagoFragment extends Fragment {
         Iterator<Map.Entry<Integer, Double>> iCuotas = hmCoutas.entrySet().iterator();
         lCuotas.removeAll(lCuotas);
 
+        lCuotas.add(3);
+        lCuotas.add(6);
+        lCuotas.add(9);
+        lCuotas.add(12);
+        lCuotas.add(18);
+        lCuotas.add(24);
+        lCuotas.add(36);
+
         while (iCuotas.hasNext()){
-            Map.Entry<Integer,Double> cuota = (Map.Entry) iCuotas.next();
-            lCuotas.add(cuota.getKey());
-            //Log.w("Populate Cuotas", String.valueOf(cuota.getKey()));
+            Map.Entry<Integer, Double> cuota = (Map.Entry) iCuotas.next();
+
+            Log.w("Populate Cuotas", String.valueOf(cuota.getKey()));
         }
-        Collections.sort(lCuotas);
+
         spnrCuotasAdapter.notifyDataSetChanged();
+
+        if(getArguments() != null) {
+            nroCuotasPrevio = getArguments().getInt("nroCuotas");
+            Log.w("nroCuotasPrevio", String.valueOf(nroCuotasPrevio));
+            Log.w("cantidad", String.valueOf(spnrCuotasAdapter.getCount()));
+            int selectionPosition = spnrCuotasAdapter.getPosition((nroCuotasPrevio));
+            Log.w("selectionPosition", String.valueOf(selectionPosition));
+            spnrCuotas.setSelection(selectionPosition);
+        }
     }
 
     @Override

@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -26,9 +25,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import net.inlanet.cateoncook.Activities.R;
 import net.inlanet.cateoncook.Interfaces.CartInteractionListener;
 import net.inlanet.cateoncook.Models.ChequeContent;
+import net.inlanet.cateoncook.Activities.R;
 
 import java.util.ArrayList;
 import java.util.Collections;

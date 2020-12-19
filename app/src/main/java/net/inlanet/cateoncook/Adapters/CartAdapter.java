@@ -10,8 +10,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
-import net.inlanet.cateoncook.Activities.R;
 import net.inlanet.cateoncook.Models.Cart;
+import net.inlanet.cateoncook.Activities.R;
 
 import java.text.DecimalFormat;
 import java.util.List;

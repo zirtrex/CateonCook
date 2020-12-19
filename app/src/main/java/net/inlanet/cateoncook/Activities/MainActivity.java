@@ -5,9 +5,9 @@ import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -21,10 +21,8 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -34,16 +32,18 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import net.inlanet.cateoncook.Adapters.MainViewPagerAdapter;
-import net.inlanet.cateoncook.Fragments.CartFragment;
-import net.inlanet.cateoncook.Fragments.FinanciamientoFragment;
-import net.inlanet.cateoncook.Fragments.TabContainerFragment;
 import net.inlanet.cateoncook.Interfaces.CartInteractionListener;
 import net.inlanet.cateoncook.Interfaces.CurrentCategoriaInteractionListener;
 import net.inlanet.cateoncook.Interfaces.CurrentProductInteractionListener;
 import net.inlanet.cateoncook.Models.Cart;
 import net.inlanet.cateoncook.Models.Producto;
 import net.inlanet.cateoncook.Util.Utils;
+import net.inlanet.cateoncook.Activities.R;
+import net.inlanet.cateoncook.Adapters.MainViewPagerAdapter;
+import net.inlanet.cateoncook.Fragments.CartFragment;
+import net.inlanet.cateoncook.Fragments.FinanciamientoFragment;
+import net.inlanet.cateoncook.Fragments.ProductsFragment;
+import net.inlanet.cateoncook.Fragments.TabContainerFragment;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -64,10 +64,10 @@ public class MainActivity extends AppCompatActivity
 
     DrawerLayout drawer;
     Toolbar toolbar;
-    TabLayout tabs;
+    TabLayout tabLayout;
 
     Producto producto;
-    String categoriaApp;
+    String categoriaApp, searchText;
 
     int mNotificationsCount = 0;
     Double montoTotal = 0.00;
@@ -87,6 +87,8 @@ public class MainActivity extends AppCompatActivity
         setTitle("Inicio");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
 
         mAuthListener = new FirebaseAuth.AuthStateListener(){
             @Override
@@ -190,7 +192,7 @@ public class MainActivity extends AppCompatActivity
 
         fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.frame_container, tabContainerFragment, "Fragment_Tab_Container")
+                .replace(R.id.frame_container, tabContainerFragment, TabContainerFragment.TAG)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();
 
@@ -230,11 +232,61 @@ public class MainActivity extends AppCompatActivity
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.toolbar_menu, menu);
 
+        //Create Search Menu
+        MenuItem search = menu.findItem(R.id.action_search);
+        SearchView mSearchView = (SearchView) search.getActionView();
+        mSearchView.setQueryHint("Buscar Productos");
+
+        mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String text) {
+                //Toast.makeText(MainActivity.this, query, Toast.LENGTH_SHORT).show();
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String text) {
+                setSearchText(text);
+                setCurrentCategoria(null);
+
+                tabLayout.getTabAt(0).select();
+
+                //Fragment productFragment = new ProductsFragment();
+
+                ProductsFragment productsFragment = (ProductsFragment) getSupportFragmentManager().findFragmentByTag(ProductsFragment.TAG);
+
+                if(productsFragment == null) {
+                    productsFragment = new ProductsFragment();
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_mainLayout, productsFragment, ProductsFragment.TAG)
+                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                            .addToBackStack(null)
+                            .commit();
+
+                    Log.i("Busqueda por", text);
+                }else if (!productsFragment.getClass().getName().equalsIgnoreCase(productsFragment.getClass().getName())) {
+                    productsFragment = new ProductsFragment();
+                    getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_mainLayout, productsFragment, ProductsFragment.TAG)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .addToBackStack(null)
+                        .commit();
+
+                    Log.i("Busqueda por", text);
+
+                } else {
+                    productsFragment.getProductsBySearch(text);
+                }
+
+                return true;
+            }
+        });
+
         // Get the notifications MenuItem and
         // its LayerDrawable (layer-list)
         MenuItem item = menu.findItem(R.id.action_notifications);
         LayerDrawable icon = (LayerDrawable) item.getIcon();
-
         // Update LayerDrawable's BadgeDrawable
         Utils.setBadgeCount(this, icon, mNotificationsCount);
 
@@ -246,14 +298,17 @@ public class MainActivity extends AppCompatActivity
 
         switch (item.getItemId()) {
 
+            case R.id.action_search:
+                return true;
+
             case R.id.action_notifications:
 
-                cartFragment = (CartFragment) fragmentManager.findFragmentByTag("Fragment_Cart");
+                cartFragment = (CartFragment) fragmentManager.findFragmentByTag(CartFragment.TAG);
 
                 if(cartFragment == null){
                     cartFragment = new CartFragment();
                     fragmentManager.beginTransaction()
-                            .add(R.id.frame_container, cartFragment, "Fragment_Cart")
+                            .add(R.id.frame_container, cartFragment, CartFragment.TAG)
                             .addToBackStack(null)
                             .commit();
                 }else{
@@ -406,6 +461,14 @@ public class MainActivity extends AppCompatActivity
     @Override
     public Double getMonto() {
         return this.montoTotal;
+    }
+
+    public void setSearchText(String searchText){
+        this.searchText = searchText;
+    }
+
+    public String getSearchText(){
+        return this.searchText;
     }
 
     @Override

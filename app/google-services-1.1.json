@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "22027173840",
+    "firebase_url": "https://cateon-cook-2.firebaseio.com",
+    "project_id": "cateon-cook-2",
+    "storage_bucket": "cateon-cook-2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:22027173840:android:f36bf67fd4a94e40",
+        "android_client_info": {
+          "package_name": "net.inlanet.cateoncookv12"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "22027173840-rndgcqbv5pl5om5rifbsej11haosb80b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAK2_EjEgwsuFAbw1FHpyBIQZkj-tQltO0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "22027173840-rndgcqbv5pl5om5rifbsej11haosb80b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

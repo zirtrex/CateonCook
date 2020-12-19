@@ -1,49 +1,32 @@
 package net.inlanet.cateoncook.Fragments;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.transition.Transition;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.Request;
-import com.bumptech.glide.request.animation.GlideAnimation;
-import com.bumptech.glide.request.target.SimpleTarget;
-import com.bumptech.glide.request.target.SizeReadyCallback;
-import com.bumptech.glide.request.target.Target;
 
 import net.inlanet.cateoncook.Activities.MainActivity;
-import net.inlanet.cateoncook.Activities.R;
-import net.inlanet.cateoncook.Adapters.HomeRVAdapter;
-import net.inlanet.cateoncook.Interfaces.CartInteractionListener;
 import net.inlanet.cateoncook.Interfaces.CurrentProductInteractionListener;
 import net.inlanet.cateoncook.Interfaces.ProductItemClickListener;
 import net.inlanet.cateoncook.Models.Producto;
+import net.inlanet.cateoncook.Activities.R;
+import net.inlanet.cateoncook.Adapters.HomeRVAdapter;
 
 public class InicioFragment extends Fragment implements ProductItemClickListener {
+
+    public static final String TAG = "InicioFragment";
 
     MainActivity mainActivityInteractionListener;
     RecyclerView rvInicio;
     HomeRVAdapter inicioRVAdapter;
     View view;
-
 
     public InicioFragment() {
         // Required empty public constructor
@@ -79,17 +62,32 @@ public class InicioFragment extends Fragment implements ProductItemClickListener
         if (position != RecyclerView.NO_POSITION){
 
             mainActivityInteractionListener.setCurrentCategoria(categoria.getNombreElemento());
+            mainActivityInteractionListener.setSearchText(null);
 
-            Fragment productFragment = new ProductsFragment();
+            Fragment productsFragment = getActivity().getSupportFragmentManager().findFragmentByTag(ProductsFragment.TAG);
 
-            getActivity().getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_mainLayout, productFragment,"ProductFragment")
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                    .addToBackStack(null)
-                    .commit();
+            if(productsFragment == null) {
+                productsFragment = new ProductsFragment();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_mainLayout, productsFragment, ProductsFragment.TAG)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .addToBackStack(null)
+                        .commit();
 
-            Log.i("INFO", categoria.getNombreElemento().toString());
+                Log.i("INFO", categoria.getNombreElemento().toString());
+            }else if (!productsFragment.getClass().getName().equalsIgnoreCase(productsFragment.getClass().getName())) {
+                productsFragment = new ProductsFragment();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_mainLayout, productsFragment, ProductsFragment.TAG)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .addToBackStack(null)
+                        .commit();
 
+                Log.i("INFO", categoria.getNombreElemento().toString());
+
+            } else {
+                //currentFragment es igual a newFragment
+            }
         }
     }
 

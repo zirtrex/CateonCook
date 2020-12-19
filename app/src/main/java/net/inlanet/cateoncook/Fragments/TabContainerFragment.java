@@ -8,14 +8,14 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import net.inlanet.cateoncook.Activities.R;
 import net.inlanet.cateoncook.Adapters.MainViewPagerAdapter;
 
 
-public class TabContainerFragment extends Fragment
-        implements ViewPager.OnPageChangeListener{
+public class TabContainerFragment extends Fragment implements ViewPager.OnPageChangeListener{
+
+    public static final String TAG = "TabContainerFragment";
 
     private View view;
     private TabLayout tabs;
@@ -25,7 +25,6 @@ public class TabContainerFragment extends Fragment
     public TabContainerFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -97,7 +96,7 @@ public class TabContainerFragment extends Fragment
             vpAdapter.addFragments(new InicioFragment(), "Inicio"); //0
             vpAdapter.addFragments(new FinanciamientoFragment(), "Financiamiento");
             vpAdapter.addFragments(new ChequeFragment(), "Cheque");
-            vpAdapter.addFragments(new CatalogoFragment(), "Catalogo");
+            vpAdapter.addFragments(new CreditoFragment(), "Credito Directo");
             //vpAdapter.addFragments(new HerramientasFragment(), "Herramientas"); //4
         }
 
@@ -119,9 +118,6 @@ public class TabContainerFragment extends Fragment
     }
 
     @Override
-    public void onPageScrollStateChanged(int state) {
-
-    }
-
+    public void onPageScrollStateChanged(int state) { }
 
 }

@@ -25,9 +25,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import net.inlanet.cateoncook.Activities.R;
 import net.inlanet.cateoncook.Interfaces.OnFragmentInteractionListener;
 import net.inlanet.cateoncook.Models.EfectivoTarjetaContent;
+import net.inlanet.cateoncook.Activities.R;
 
 import java.util.ArrayList;
 import java.util.Collections;

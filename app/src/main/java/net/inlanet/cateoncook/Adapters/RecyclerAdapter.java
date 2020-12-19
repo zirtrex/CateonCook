@@ -1,13 +1,10 @@
 package net.inlanet.cateoncook.Adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
-import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +15,9 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-import net.inlanet.cateoncook.Fragments.FinanciamientoFragment;
 import net.inlanet.cateoncook.Fragments.ProductDetailFragment;
-import net.inlanet.cateoncook.Activities.R;
 import net.inlanet.cateoncook.Interfaces.OnFragmentInteractionListener;
+import net.inlanet.cateoncook.Activities.R;
 import net.inlanet.cateoncook.Models.Productos;
 
 

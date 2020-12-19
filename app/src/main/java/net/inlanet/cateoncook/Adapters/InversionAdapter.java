@@ -7,23 +7,23 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import net.inlanet.cateoncook.Interfaces.OnFragmentInteractionListener;
-import net.inlanet.cateoncook.Models.InversionesContent.Inversiones;
+import net.inlanet.cateoncook.Models.InversionesContent;
 
 import java.util.List;
 
 import net.inlanet.cateoncook.Activities.R;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link Inversiones} and makes a call to the
+ * {@link RecyclerView.Adapter} that can display a {@link InversionesContent.Inversiones} and makes a call to the
  * specified {@link OnFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
 public class InversionAdapter extends RecyclerView.Adapter<InversionAdapter.ViewHolder> {
 
-    private final List<Inversiones> mValues;
+    private final List<InversionesContent.Inversiones> mValues;
     private final OnFragmentInteractionListener mListener;
 
-    public InversionAdapter(List<Inversiones> items, OnFragmentInteractionListener listener) {
+    public InversionAdapter(List<InversionesContent.Inversiones> items, OnFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -64,7 +64,7 @@ public class InversionAdapter extends RecyclerView.Adapter<InversionAdapter.View
         public final TextView tvNroCuotas;
         public final TextView tvTexto;
         public final TextView tvMonto;
-        public Inversiones mItem;
+        public InversionesContent.Inversiones mItem;
 
         public ViewHolder(View view) {
             super(view);

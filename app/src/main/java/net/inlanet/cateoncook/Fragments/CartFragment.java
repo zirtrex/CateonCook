@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -26,16 +25,18 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import net.inlanet.cateoncook.Activities.R;
-import net.inlanet.cateoncook.Adapters.CartAdapter;
 import net.inlanet.cateoncook.Interfaces.CartInteractionListener;
 import net.inlanet.cateoncook.Models.Cart;
+import net.inlanet.cateoncook.Activities.R;
+import net.inlanet.cateoncook.Adapters.CartAdapter;
 
 import java.text.NumberFormat;
 import java.util.LinkedList;
 import java.util.List;
 
 public class CartFragment extends Fragment implements View.OnClickListener{
+
+    public static final String TAG = "CartFragment";
 
     CartInteractionListener cartInteractionListener;
     FirebaseAuth.AuthStateListener mAuthListener;

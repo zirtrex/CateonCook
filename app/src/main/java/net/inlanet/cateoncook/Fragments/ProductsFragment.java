@@ -2,10 +2,8 @@ package net.inlanet.cateoncook.Fragments;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -13,7 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,24 +21,26 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import net.inlanet.cateoncook.Activities.MainActivity;
-import net.inlanet.cateoncook.Activities.R;
-import net.inlanet.cateoncook.Adapters.HomeRVAdapter;
-import net.inlanet.cateoncook.Adapters.ProductsRVAdapter;
-import net.inlanet.cateoncook.Interfaces.CartInteractionListener;
 import net.inlanet.cateoncook.Interfaces.CurrentProductInteractionListener;
 import net.inlanet.cateoncook.Interfaces.ProductItemClickListener;
 import net.inlanet.cateoncook.Models.Producto;
+import net.inlanet.cateoncook.Activities.R;
+import net.inlanet.cateoncook.Adapters.HomeRVAdapter;
+import net.inlanet.cateoncook.Adapters.ProductsRVAdapter;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class ProductsFragment extends Fragment implements ProductItemClickListener{
+public class ProductsFragment extends Fragment implements ProductItemClickListener {
 
-    List<Producto> productos;
+    public static final String TAG = "ProductsFragment";
+
+    List<Producto> productos = new LinkedList<Producto>();
     RecyclerView rvProductos;
     ProductsRVAdapter productsRVAdapter;
     ViewGroup view;
-    String categoriaApp;
+    TextView tvSearchMessage;
+    String categoriaApp, searchText;
 
     MainActivity mainActivityInteractionListener;
 
@@ -58,14 +58,16 @@ public class ProductsFragment extends Fragment implements ProductItemClickListen
 
         view = (ViewGroup) inflater.inflate(R.layout.fragment_productos, container, false);
 
+        tvSearchMessage = (TextView) view.findViewById(R.id.tvSearchMessage);
         rvProductos = (RecyclerView) view.findViewById(R.id.rvProductos);
 
         if (categoriaApp != null) {
-
             getActivity().setTitle(categoriaApp);
-
             getProducts(categoriaApp);
 
+        } else if(searchText != null){
+            getActivity().setTitle("Resultado para: " + searchText);
+            getProductsBySearch(searchText);
         }
 
         productsRVAdapter = new ProductsRVAdapter(getContext(), productos, this);
@@ -75,34 +77,55 @@ public class ProductsFragment extends Fragment implements ProductItemClickListen
         return view;
     }
 
-    private void getProducts(String categoriaApp){
-        productos = new LinkedList<Producto>();
+    public void getProductsBySearch(String searchText) {
+        //productos = new LinkedList<Producto>();
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("productos");
+        DatabaseReference myRef = database.getReference("productosv12");
+        Query productosSearchQuery;
+
+        String newSearchText = searchText.toUpperCase();
+
+        Log.i("Busqueda por", searchText);
+
+        productosSearchQuery = myRef.orderByChild("nombreProducto").startAt(newSearchText).endAt(newSearchText + "\uf8ff");
+
+        productosSearchQuery.addListenerForSingleValueEvent(productsEventListener);
+    }
+
+    private void getProducts(String categoriaApp){
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("productosv12");
         Query productosQuery;
 
         Log.w("Categoria", categoriaApp);
 
-        productosQuery = myRef.child(categoriaApp);
+        productosQuery = myRef.orderByChild("categoriaApp").equalTo(categoriaApp);
 
-        productosQuery.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                productos.removeAll(productos);
-                for(DataSnapshot snapshot : dataSnapshot.getChildren() ){
-                    Producto producto = snapshot.getValue(Producto.class);
-                    productos.add(producto);
-                }
-                productsRVAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+        productosQuery.addValueEventListener(productsEventListener);
     }
+
+    ValueEventListener productsEventListener = new ValueEventListener() {
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+            productos.removeAll(productos);
+
+            for(DataSnapshot prod : dataSnapshot.getChildren() ){
+                Producto producto = prod.getValue(Producto.class);
+                productos.add(producto);
+            }
+            productsRVAdapter.notifyDataSetChanged();
+
+            if(productos.size() == 0){
+                tvSearchMessage.setVisibility(View.VISIBLE);
+            }else{
+                tvSearchMessage.setVisibility(View.GONE);
+            }
+        }
+        @Override
+        public void onCancelled(DatabaseError databaseError) {}
+    };
 
     @Override
     public void onProductItemClick(int position, Producto productItem, ImageView sharedImageView) {
@@ -118,16 +141,12 @@ public class ProductsFragment extends Fragment implements ProductItemClickListen
             transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
             transaction.addToBackStack(null).commit();
 
-            Snackbar.make( view, "Elemento: " + productItem.getNombreProducto(),
-                    Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
-
+            Log.i("INFO", "Producto Seleccionado: " + productItem.getNombreProducto());
         }
     }
-    @Override
-    public void onCategoriaItemClick(int position, HomeRVAdapter.Elemento categoria) {
 
-    }
+    @Override
+    public void onCategoriaItemClick(int position, HomeRVAdapter.Elemento categoria) {}
 
     @Override
     public void onAttach(Context context) {
@@ -135,7 +154,8 @@ public class ProductsFragment extends Fragment implements ProductItemClickListen
         if (context instanceof CurrentProductInteractionListener) {
             mainActivityInteractionListener = (MainActivity) context;
             this.categoriaApp = mainActivityInteractionListener.getCurrentCategoria();
-            Log.w("Productos", "Producto Atachado");
+            this.searchText = mainActivityInteractionListener.getSearchText();
+            Log.i("Productos", "Producto Atachado");
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement CurrentProductInteractionListener");

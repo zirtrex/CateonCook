@@ -2,7 +2,6 @@ package net.inlanet.cateoncook.Fragments;
 
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
@@ -12,10 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import net.inlanet.cateoncook.Activities.R;
-import net.inlanet.cateoncook.Adapters.FormasPagoAdapter;
 import net.inlanet.cateoncook.Interfaces.OnFragmentInteractionListener;
 import net.inlanet.cateoncook.Util.Utils;
+import net.inlanet.cateoncook.Activities.R;
+import net.inlanet.cateoncook.Adapters.FormasPagoAdapter;
 
 public class FormasPagoFragment extends Fragment {
 

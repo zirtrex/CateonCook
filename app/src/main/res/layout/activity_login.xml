@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:gravity="center_vertical|center_horizontal"
     android:orientation="vertical"
-    tools:context=".LoginActivity"
+    tools:context="net.inlanet.cateoncook.Activities.LoginActivity"
     android:background="@drawable/intro_fondo"
     android:padding="@dimen/activity_horizontal_margin">
 

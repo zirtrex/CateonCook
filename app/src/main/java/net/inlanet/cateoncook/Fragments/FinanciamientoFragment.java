@@ -14,10 +14,10 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
-import net.inlanet.cateoncook.Activities.R;
-import net.inlanet.cateoncook.Adapters.FinanciamientoRVAdapter;
 import net.inlanet.cateoncook.Interfaces.CartInteractionListener;
 import net.inlanet.cateoncook.Models.FinanciamientoContent;
+import net.inlanet.cateoncook.Activities.R;
+import net.inlanet.cateoncook.Adapters.FinanciamientoRVAdapter;
 
 import java.text.NumberFormat;
 

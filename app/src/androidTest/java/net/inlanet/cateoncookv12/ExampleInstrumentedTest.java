@@ -1,4 +1,4 @@
-package net.inlanet.cateoncook;
+package net.inlanet.cateoncookv12;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

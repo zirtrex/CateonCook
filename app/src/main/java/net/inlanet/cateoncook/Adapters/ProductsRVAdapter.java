@@ -14,9 +14,9 @@ import com.bumptech.glide.Glide;
 import java.text.NumberFormat;
 import java.util.List;
 
-import net.inlanet.cateoncook.Activities.R;
 import net.inlanet.cateoncook.Interfaces.ProductItemClickListener;
 import net.inlanet.cateoncook.Models.Producto;
+import net.inlanet.cateoncook.Activities.R;
 
 
 public class ProductsRVAdapter extends RecyclerView.Adapter<ProductsRVAdapter.ViewHolder> {
