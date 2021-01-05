@@ -15,21 +15,21 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
+import net.inlanet.cateoncook.Interfaces.CartInteractionListener;
 import net.inlanet.cateoncook.Fragments.ProductDetailFragment;
-import net.inlanet.cateoncook.Interfaces.OnFragmentInteractionListener;
 import net.inlanet.cateoncook.Activities.R;
 import net.inlanet.cateoncook.Models.Productos;
 
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
 
-    private final OnFragmentInteractionListener mListener;
+    private final CartInteractionListener mListener;
 
     private List<Productos> lProductos;
     private Context context;
 
 
-    public RecyclerAdapter(Context context, List<Productos> productos, OnFragmentInteractionListener listener){
+    public RecyclerAdapter(Context context, List<Productos> productos, CartInteractionListener listener){
         this.lProductos = productos;
         mListener = listener;
         this.context = context;

@@ -21,6 +21,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,16 +33,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import net.inlanet.cateoncook.Fragments.CreditoDirectoFragment;
 import net.inlanet.cateoncook.Interfaces.CartInteractionListener;
 import net.inlanet.cateoncook.Interfaces.CurrentCategoriaInteractionListener;
 import net.inlanet.cateoncook.Interfaces.CurrentProductInteractionListener;
 import net.inlanet.cateoncook.Models.Cart;
 import net.inlanet.cateoncook.Models.Producto;
 import net.inlanet.cateoncook.Util.Utils;
-import net.inlanet.cateoncook.Activities.R;
 import net.inlanet.cateoncook.Adapters.MainViewPagerAdapter;
 import net.inlanet.cateoncook.Fragments.CartFragment;
-import net.inlanet.cateoncook.Fragments.FinanciamientoFragment;
+import net.inlanet.cateoncook.Fragments.TarjetaCreditoFinanciamientoFragment;
 import net.inlanet.cateoncook.Fragments.ProductsFragment;
 import net.inlanet.cateoncook.Fragments.TabContainerFragment;
 
@@ -50,8 +51,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
-        CartInteractionListener, CurrentProductInteractionListener,
-        CurrentCategoriaInteractionListener {
+        CurrentProductInteractionListener,
+        CurrentCategoriaInteractionListener, CartInteractionListener {
 
     FirebaseAuth.AuthStateListener mAuthListener;
 
@@ -414,6 +415,8 @@ public class MainActivity extends AppCompatActivity
             montoTotal += price;
         }
 
+        this.montoTotal = montoTotal;
+
         return montoTotal;
     }
 
@@ -432,22 +435,24 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void saveMonto(Double montoTotal) {
+    public void setMonto(double montoTotal) {
         this.montoTotal = montoTotal;
 
         int vpId = tabContainerFragment.getViewPager().getId();
         String fragmentTag = makeFragmentName(vpId, 1);
         MainViewPagerAdapter vpAdapter = (MainViewPagerAdapter) tabContainerFragment.getViewPager().getAdapter();
-        FinanciamientoFragment financiamientoFragment = (FinanciamientoFragment) vpAdapter.getItem(1);
+        TarjetaCreditoFinanciamientoFragment tarjetaCreditoFinanciamientoFragment = (TarjetaCreditoFinanciamientoFragment) vpAdapter.getItem(1);
+        CreditoDirectoFragment creditoDirectoFragment = (CreditoDirectoFragment) vpAdapter.getItem(3);
 
-        if(financiamientoFragment != null){
-            financiamientoFragment.actualizarMontoCart();
-            /*Toast.makeText(getApplicationContext(),
-                    "fragmentB == null",
-                    Toast.LENGTH_SHORT).show();*/
+        if (tarjetaCreditoFinanciamientoFragment != null) {
+            tarjetaCreditoFinanciamientoFragment.actualizarMontoTotal();
         }
-        Log.w("Main Activity", "Se ha pulsado saveMonto " + String.valueOf(montoTotal));
-        //Toast.makeText(getApplicationContext(), "Se ha pulsado saveMonto " + String.valueOf(montoTotal), Toast.LENGTH_SHORT).show();
+
+        if (creditoDirectoFragment != null) {
+            creditoDirectoFragment.actualizarMontoTotal();
+        }
+
+        Toast.makeText(getApplicationContext(), "Se ha actualizado el monto de compra a: " + String.valueOf(montoTotal), Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -460,6 +465,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public Double getMonto() {
+        this.getCart();
         return this.montoTotal;
     }
 

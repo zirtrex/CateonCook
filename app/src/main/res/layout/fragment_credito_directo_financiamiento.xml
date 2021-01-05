@@ -1,9 +1,10 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="net.inlanet.cateoncook.Fragments.FinanciamientoFragment"
-    android:id="@+id/fragment_financiamiento_root">
+    tools:context="net.inlanet.cateoncook.Fragments.CreditoDirectoFinanciamientoFragment"
+    android:id="@+id/fragment_credito_directo_root">
 
     <ImageView
         android:id="@+id/ivMain"
@@ -22,20 +23,27 @@
             android:id="@+id/tvMontoTotal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Seleccione el carro de compra"
+            android:text="Click en el boton Generar"
             android:textAlignment="center"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="24sp" />
+            android:textSize="20sp" />
 
-        <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
+        <TextView
+            android:id="@+id/tvEntrada"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20sp" />
+
+        <android.support.v7.widget.RecyclerView
             android:id="@+id/rvFinanciamientos"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             app:layoutManager="LinearLayoutManager"
-            tools:context="net.inlanet.cateoncook.Fragments.FinanciamientoFragment"
+            tools:context="net.inlanet.cateoncook.Fragments.CreditoDirectoFinanciamientoFragment"
             tools:listitem="@layout/fragment_financiamiento_item_list" />
 
     </LinearLayout>

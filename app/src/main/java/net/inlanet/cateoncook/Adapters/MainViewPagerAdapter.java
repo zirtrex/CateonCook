@@ -5,10 +5,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import net.inlanet.cateoncook.Interfaces.CartInteractionListener;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import net.inlanet.cateoncook.Interfaces.CartInteractionListener;
 
 public class MainViewPagerAdapter extends FragmentStatePagerAdapter{
 

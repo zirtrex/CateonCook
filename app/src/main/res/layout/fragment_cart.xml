@@ -60,25 +60,26 @@
             android:layout_below="@+id/priceLayout">
 
             <Button
-                android:id="@+id/btnFinanciamiento"
+                android:id="@+id/btnTarjetaCredito"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ver Financiamientos"
+                android:text="FINANCIAMIENTO CON TARJETA DE CRÉDITO"
                 android:textColor="@android:color/background_light" />
 
             <Button
-                android:id="@+id/btnCheques"
+                android:id="@+id/btnCheque"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ver Cheques"
+                android:text="FINANCIAMIENTO CON CHEQUES"
                 android:textColor="@android:color/background_light" />
 
-            <FrameLayout
+            <Button
+                android:id="@+id/btnCreditoDirecto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/flFinanciamiento">
+                android:text="FINANCIAMIENTO CON CRÉDITO DIRECTO"
+                android:textColor="@android:color/background_light" />
 
-            </FrameLayout>
         </LinearLayout>
 
     </RelativeLayout>

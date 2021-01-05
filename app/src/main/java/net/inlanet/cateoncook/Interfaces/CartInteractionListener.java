@@ -2,7 +2,7 @@ package net.inlanet.cateoncook.Interfaces;
 
 public interface CartInteractionListener {
 
-    void saveMonto(Double monto);
+    void setMonto(double monto);
 
     Double getMonto();
 

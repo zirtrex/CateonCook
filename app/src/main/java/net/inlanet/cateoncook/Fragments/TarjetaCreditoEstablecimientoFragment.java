@@ -39,7 +39,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class EstablecimientoFragment extends Fragment implements View.OnClickListener {
+public class TarjetaCreditoEstablecimientoFragment extends Fragment implements View.OnClickListener {
 
     View view;
     CartInteractionListener cartInteractionListener;
@@ -57,13 +57,13 @@ public class EstablecimientoFragment extends Fragment implements View.OnClickLis
 
     ImageView ly;
 
-    public EstablecimientoFragment() {
+    public TarjetaCreditoEstablecimientoFragment() {
         // Required empty public constructor
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_establecimiento, container, false);
+        view = inflater.inflate(R.layout.fragment_tarjeta_credito_establecimiento, container, false);
 
         spnrTarjetas = (Spinner) view.findViewById(R.id.spnrTarjetas);
 

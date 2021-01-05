@@ -1,10 +1,9 @@
 package net.inlanet.cateoncook.Adapters;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,21 +11,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import net.inlanet.cateoncook.Fragments.FormaPagoFragment;
+import net.inlanet.cateoncook.Activities.R;
+import net.inlanet.cateoncook.Fragments.CreditoDirectoPagoFragment;
 import net.inlanet.cateoncook.Interfaces.CartInteractionListener;
-import net.inlanet.cateoncook.Models.FinanciamientoContent;
+import net.inlanet.cateoncook.Models.Financiamiento;
 
 import java.util.List;
 
-import net.inlanet.cateoncook.Activities.R;
+public class FinanciamientoCreditoDirectoRVAdapter extends RecyclerView.Adapter<FinanciamientoCreditoDirectoRVAdapter.ViewHolder> {
 
-public class FinanciamientoRVAdapter extends RecyclerView.Adapter<FinanciamientoRVAdapter.ViewHolder> {
-
-    private Context context;
-    private final List<FinanciamientoContent.Financiamiento> mValues;
+    private Fragment context;
+    private final List<Financiamiento> mValues;
     private final CartInteractionListener cartInteractionListener;
 
-    public FinanciamientoRVAdapter(Context context, List<FinanciamientoContent.Financiamiento> items, CartInteractionListener listener) {
+    public FinanciamientoCreditoDirectoRVAdapter(Fragment context, List<Financiamiento> items, CartInteractionListener listener) {
         this.context = context;
         mValues = items;
         cartInteractionListener = listener;
@@ -42,7 +40,7 @@ public class FinanciamientoRVAdapter extends RecyclerView.Adapter<Financiamiento
     @Override
     public void onBindViewHolder(final ViewHolder viewHolder, int position) {
 
-        final FinanciamientoContent.Financiamiento valor = mValues.get(position);
+        final Financiamiento valor = mValues.get(position);
 
         viewHolder.mItem = mValues.get(position);
         viewHolder.tvNroCuotas.setText(mValues.get(position).nroCuotas);
@@ -52,32 +50,33 @@ public class FinanciamientoRVAdapter extends RecyclerView.Adapter<Financiamiento
         viewHolder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            if (null != cartInteractionListener) {
 
-                //Log.w("Financiamiento: ", cartInteractionListener.getMonto().toString());
+                if (null != cartInteractionListener) {
 
-                //Log.w("Financiamiento:", valor.monto);
+                    int position = viewHolder.getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION){
+                        Log.w("Financiamiento: ", getItem(position).nroCuotas);
 
-                int position = viewHolder.getAdapterPosition();
-                if (position != RecyclerView.NO_POSITION){
-                    Log.w("Financiamiento: ", getItem(position).nroCuotas);
+                        String nroCuotas = getItem(position).nroCuotas;
+                        String pagoMinimo = getItem(position).monto;
 
-                    String nroCuotas = getItem(position).nroCuotas;
+                        Bundle args = new Bundle();
+                        args.putInt("nroCuotas", Integer.parseInt(nroCuotas));
+                        args.putString("pagoMinimo", pagoMinimo);
 
-                    Bundle args = new Bundle();
-                    args.putInt("nroCuotas", Integer.parseInt(nroCuotas));
+                        Fragment creditoDirectoPagoFragment = new CreditoDirectoPagoFragment();
+                        creditoDirectoPagoFragment.setArguments(args);
 
-                    Fragment formaPagoFragment = new FormaPagoFragment();
-                    formaPagoFragment.setArguments(args);
+                        FragmentManager fragmentManager = ((Fragment) context).getChildFragmentManager();
+                        fragmentManager.popBackStack("CreditoDirectoFragment", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                        fragmentManager.beginTransaction()
+                                .replace(R.id.fragment_credito_directo_root, creditoDirectoPagoFragment, "CreditoDirectoPagoFragment")
+                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                                .addToBackStack("CreditoDirectoFragment")
+                                .commit();
 
-                    ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.fragment_financiamiento_root, formaPagoFragment,"Fragment_Forma_Pago")
-                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                            .addToBackStack(null)
-                            .commit();
-
+                    }
                 }
-            }
             }
         });
     }
@@ -87,7 +86,7 @@ public class FinanciamientoRVAdapter extends RecyclerView.Adapter<Financiamiento
         return i;
     }
 
-    public FinanciamientoContent.Financiamiento getItem(int position) {
+    public Financiamiento getItem(int position) {
         if (position < 0 || position >= getItemCount()) {
             throw new IllegalArgumentException("Item position is out of adapter's range");
         }
@@ -105,7 +104,7 @@ public class FinanciamientoRVAdapter extends RecyclerView.Adapter<Financiamiento
         public final TextView tvNroCuotas;
         public final TextView tvTexto;
         public final TextView tvMonto;
-        public FinanciamientoContent.Financiamiento mItem;
+        public Financiamiento mItem;
 
         public ViewHolder(View view) {
             super(view);

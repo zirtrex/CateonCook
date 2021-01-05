@@ -9,30 +9,27 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-
+import net.inlanet.cateoncook.Adapters.FinanciamientoCreditoDirectoRVAdapter;
 import net.inlanet.cateoncook.Interfaces.CartInteractionListener;
-import net.inlanet.cateoncook.Models.FinanciamientoContent;
+import net.inlanet.cateoncook.Models.CreditoDirectoContent;
 import net.inlanet.cateoncook.Activities.R;
-import net.inlanet.cateoncook.Adapters.FinanciamientoRVAdapter;
 
 import java.text.NumberFormat;
 
 
-public class FinanciamientoFragment extends Fragment {
+public class CreditoDirectoFinanciamientoFragment extends Fragment {
+
+    public static final String TAG = "CreditoDirectoFinanciamientoFragment";
 
     CartInteractionListener cartInteractionListener;
 
     View view;
-    TextView tvMontoTotal;
+    TextView tvMontoTotal, tvEntrada;
     Double montoTotal = 0.00;
 
-    ImageView ly;
-
-    public FinanciamientoFragment() {
+    public CreditoDirectoFinanciamientoFragment() {
     }
 
     @Override
@@ -43,38 +40,35 @@ public class FinanciamientoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        view = inflater.inflate(R.layout.fragment_financiamiento, container, false);
+        view = inflater.inflate(R.layout.fragment_credito_directo_financiamiento, container, false);
 
-        actualizarMontoCart();
-
-        ly = (ImageView) view.findViewById(R.id.ivMain);
-
-        String imgUrl = "https://firebasestorage.googleapis.com/v0/b/cateoncook.appspot.com/o/fondo_amarillo_reducido.jpg?alt=media&token=2ecb8b3e-5621-4c2a-b6a4-475822bb0ac4";
-
-        Glide.with(getActivity().getApplicationContext())
-                .load(imgUrl)
-                .centerCrop()
-                .placeholder(R.drawable.load)
-                .into(ly);
+        actualizarMontoTotal(0.00);
 
         return view;
     }
 
-    public void actualizarMontoCart(){
+    public void actualizarMontoTotal(Double entrada) {
+
         if(cartInteractionListener != null) {
             montoTotal = cartInteractionListener.getMonto();
+            Double nuevoMonto = montoTotal;
 
-            Log.w("Financiamiento", Double.toString(montoTotal));
-
-            tvMontoTotal = (TextView) view.findViewById(R.id.tvMontoTotal);
-            String convertPrice = NumberFormat.getCurrencyInstance().format(montoTotal);
-            tvMontoTotal.setText("El monto de compra total es: " + convertPrice);
-
-            FinanciamientoContent financiamientoContent = new FinanciamientoContent(montoTotal);
+            Log.w("Monto Total", Double.toString(entrada));
 
             RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.rvFinanciamientos);
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-            recyclerView.setAdapter(new FinanciamientoRVAdapter(getContext(), FinanciamientoContent.FINANCIAMIENTOS, cartInteractionListener));
+
+            if (entrada > 0.00) {
+                nuevoMonto =   montoTotal - entrada;
+                CreditoDirectoContent creditoDirectoContent = new CreditoDirectoContent(nuevoMonto);
+                recyclerView.setAdapter(new FinanciamientoCreditoDirectoRVAdapter(getParentFragment(), CreditoDirectoContent.FINANCIAMIENTOS, cartInteractionListener));
+
+                tvMontoTotal = (TextView) view.findViewById(R.id.tvMontoTotal);
+                tvEntrada = (TextView) view.findViewById(R.id.tvEntrada);
+                tvMontoTotal.setText("El monto de compra total es: " + NumberFormat.getCurrencyInstance().format(montoTotal));
+                tvEntrada.setText("Entrada de: " + NumberFormat.getCurrencyInstance().format(entrada));
+            }
+
         }
     }
 
@@ -85,7 +79,7 @@ public class FinanciamientoFragment extends Fragment {
         if (context instanceof CartInteractionListener) {
             cartInteractionListener = (CartInteractionListener) context;
             this.montoTotal = cartInteractionListener.getMonto();
-            Log.w("onAttach", "Financiamiento Atachado");
+            Log.w("onAttach", "Credito Directo Financiamiento Atachado");
         } else {
             throw new RuntimeException(context.toString()
                     + "Se debe implementar CartInteractionListener");

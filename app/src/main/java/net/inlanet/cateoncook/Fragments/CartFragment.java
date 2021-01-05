@@ -44,10 +44,11 @@ public class CartFragment extends Fragment implements View.OnClickListener{
     View view;
     CartAdapter cartAdapter;
     RecyclerView rvCart;
-    Double cartPrecioTotal = 0.00;
     List<Cart> lCart;
-    Button btnFinanciamiento, btnCheques;
+    Button btnTarjetaCredito, btnCheque, btnCreditoDirecto;
     TabLayout tabLayout;
+
+    Double cartPrecioTotal = 0.00;
 
     public CartFragment() {
     }
@@ -110,7 +111,6 @@ public class CartFragment extends Fragment implements View.OnClickListener{
             }
         });
 
-        // Initialize the adapter and attach it to the RecyclerView
         cartAdapter = new CartAdapter(getContext(), lCart);
         rvCart.setAdapter(cartAdapter);
 
@@ -149,11 +149,14 @@ public class CartFragment extends Fragment implements View.OnClickListener{
             }
         }).attachToRecyclerView(rvCart);
 
-        btnFinanciamiento = (Button) view.findViewById(R.id.btnFinanciamiento);
-        btnFinanciamiento.setOnClickListener(this);
+        btnTarjetaCredito = (Button) view.findViewById(R.id.btnTarjetaCredito);
+        btnTarjetaCredito.setOnClickListener(this);
 
-        btnCheques = (Button) view.findViewById(R.id.btnCheques);
-        btnCheques.setOnClickListener(this);
+        btnCheque = (Button) view.findViewById(R.id.btnCheque);
+        btnCheque.setOnClickListener(this);
+
+        btnCreditoDirecto = (Button) view.findViewById(R.id.btnCreditoDirecto);
+        btnCreditoDirecto.setOnClickListener(this);
 
         return view;
 
@@ -175,12 +178,12 @@ public class CartFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onStop() {
         super.onStop();
-        if(mAuthListener != null){
+        if (mAuthListener != null) {
             FirebaseAuth.getInstance().removeAuthStateListener(mAuthListener);
         }
     }
 
-    public void calculateTotal(List<Cart> lcart){
+    public void calculateTotal(List<Cart> lcart) {
 
         Double cartPrecioTotal = 0.00;
 
@@ -199,7 +202,7 @@ public class CartFragment extends Fragment implements View.OnClickListener{
         tvCartPrecioTotal.setText(convertPrice);
 
         if (null != cartInteractionListener) {
-            cartInteractionListener.saveMonto(this.cartPrecioTotal);
+            cartInteractionListener.setMonto(this.cartPrecioTotal);
             cartInteractionListener.updateNotificationsBadge(lcart.size());
         }
 
@@ -214,12 +217,12 @@ public class CartFragment extends Fragment implements View.OnClickListener{
         args.putDouble("montoTotal", cartPrecioTotal);
 
         switch (view.getId()) {
-            case R.id.btnFinanciamiento:
+            case R.id.btnTarjetaCredito:
 
                 //getActivity().onBackPressed();
 
                 if (null != cartInteractionListener) {
-                    cartInteractionListener.saveMonto(this.cartPrecioTotal);
+                    cartInteractionListener.setMonto(this.cartPrecioTotal);
                 }
 
                 //Fragment fFinanciamiento = new FinanciamientoFragment();
@@ -231,10 +234,10 @@ public class CartFragment extends Fragment implements View.OnClickListener{
                 tabLayout.getTabAt(1).select();
 
                 break;
-            case R.id.btnCheques:
+            case R.id.btnCheque:
 
                 if (null != cartInteractionListener) {
-                    cartInteractionListener.saveMonto(this.cartPrecioTotal);
+                    cartInteractionListener.setMonto(this.cartPrecioTotal);
                 }
 
                 getActivity().getSupportFragmentManager().beginTransaction()
@@ -242,6 +245,19 @@ public class CartFragment extends Fragment implements View.OnClickListener{
                         .commit();
 
                 tabLayout.getTabAt(2).select();
+
+                break;
+            case R.id.btnCreditoDirecto:
+
+                if (null != cartInteractionListener) {
+                    cartInteractionListener.setMonto(this.cartPrecioTotal);
+                }
+
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .remove(this)
+                        .commit();
+
+                tabLayout.getTabAt(3).select();
 
                 break;
 

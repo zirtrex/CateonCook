@@ -94,9 +94,9 @@ public class TabContainerFragment extends Fragment implements ViewPager.OnPageCh
         if(vpAdapter.getCount() == 0) {
 
             vpAdapter.addFragments(new InicioFragment(), "Inicio"); //0
-            vpAdapter.addFragments(new FinanciamientoFragment(), "Financiamiento");
+            vpAdapter.addFragments(new TarjetaCreditoFinanciamientoFragment(), "Financiamiento");
             vpAdapter.addFragments(new ChequeFragment(), "Cheque");
-            vpAdapter.addFragments(new CreditoFragment(), "Credito Directo");
+            vpAdapter.addFragments(new CreditoDirectoFragment(), "Credito Directo");
             //vpAdapter.addFragments(new HerramientasFragment(), "Herramientas"); //4
         }
 

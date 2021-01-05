@@ -4,9 +4,9 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FinanciamientoContent {
+public class TarjetaCreditoContent {
 
-    public static final List<Financiamiento> FINANCIAMIENTOS = new ArrayList<Financiamiento>();
+    public static final List<Financiamiento> FINANCIAMIENTOS = new ArrayList<>();
 
     private static final int COUNT = 36;
 
@@ -16,7 +16,7 @@ public class FinanciamientoContent {
     double montoTotal = 0;
     double impuesto;
 
-    public FinanciamientoContent(double montoTotal) {
+    public TarjetaCreditoContent(double montoTotal) {
 
         FINANCIAMIENTOS.removeAll(FINANCIAMIENTOS);
         if(montoTotal != 0.00) {
@@ -44,23 +44,4 @@ public class FinanciamientoContent {
         return new Financiamiento(String.valueOf(nroCuota), " INVERSIONES DE ", montoCuota);
     }
 
-    /**
-     * Constructor para el listado de las inversiones
-     */
-    public static class Financiamiento {
-        public final String nroCuotas;
-        public final String texto;
-        public final String monto;
-
-        public Financiamiento(String nroCuotas, String texto, String monto) {
-            this.nroCuotas = nroCuotas;
-            this.texto = texto;
-            this.monto = monto;
-        }
-
-        @Override
-        public String toString() {
-            return nroCuotas + texto + monto;
-        }
-    }
 }

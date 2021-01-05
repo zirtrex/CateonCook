@@ -6,24 +6,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import net.inlanet.cateoncook.Interfaces.OnFragmentInteractionListener;
+import net.inlanet.cateoncook.Interfaces.CartInteractionListener;
 import net.inlanet.cateoncook.Models.InversionesContent;
 
 import java.util.List;
 
 import net.inlanet.cateoncook.Activities.R;
 
-/**
- * {@link RecyclerView.Adapter} that can display a {@link InversionesContent.Inversiones} and makes a call to the
- * specified {@link OnFragmentInteractionListener}.
- * TODO: Replace the implementation with code for your data type.
- */
 public class InversionAdapter extends RecyclerView.Adapter<InversionAdapter.ViewHolder> {
 
     private final List<InversionesContent.Inversiones> mValues;
-    private final OnFragmentInteractionListener mListener;
+    private final CartInteractionListener mListener;
 
-    public InversionAdapter(List<InversionesContent.Inversiones> items, OnFragmentInteractionListener listener) {
+    public InversionAdapter(List<InversionesContent.Inversiones> items, CartInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -48,7 +43,7 @@ public class InversionAdapter extends RecyclerView.Adapter<InversionAdapter.View
                 if (null != mListener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
-                    mListener.saveMonto(0.00);
+                    mListener.setMonto(0.00);
                 }
             }
         });

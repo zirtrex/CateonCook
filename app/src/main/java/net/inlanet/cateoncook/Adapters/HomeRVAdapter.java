@@ -35,8 +35,8 @@ public class HomeRVAdapter extends RecyclerView.Adapter<HomeRVAdapter.ViewHolder
         lElementos.add(new Elemento("SUGERENCIAS", "https://firebasestorage.googleapis.com/v0/b/cateoncook.appspot.com/o/sugerencias.jpg?alt=media&token=2f8f194f-4f97-4bac-9880-77ca894e1ba4"));
         lElementos.add(new Elemento("SETS","https://firebasestorage.googleapis.com/v0/b/cateoncook.appspot.com/o/sets.jpg?alt=media&token=2e911147-d852-4355-a791-d7015f5bff5b"));
         lElementos.add(new Elemento("OMELETERAS Y PAELLERAS", "https://firebasestorage.googleapis.com/v0/b/cateoncook.appspot.com/o/omeleteras_paelleras.jpg?alt=media&token=854c1fe9-6f24-4939-a12b-f17c6fa7b7dd"));
-        lElementos.add(new Elemento("COMALES Y CUCHILLOS", "https://firebasestorage.googleapis.com/v0/b/cateoncook.appspot.com/o/comales_cuchillos.jpg?alt=media&token=0ff64838-4404-47ed-8bb4-5ac3b2dce5b3"));
-        lElementos.add(new Elemento("ACCESORIOS", "https://firebasestorage.googleapis.com/v0/b/cateoncook.appspot.com/o/accesorios.jpg?alt=media&token=18e751f5-35fa-4194-86f7-7cbb74b547ad"));
+        lElementos.add(new Elemento("COMALES Y CUCHILLOS", "https://firebasestorage.googleapis.com/v0/b/cateon-cook-2.appspot.com/o/comales_y_cuchillos.jpg?alt=media&token=dfce6ee2-1c04-47fd-9867-a4f9f2af7886"));
+        lElementos.add(new Elemento("ACCESORIOS", "https://firebasestorage.googleapis.com/v0/b/cateoncook.appspot.com/o/accesorios.jpg?alt=media&token=bc758f4e-b9ac-4ba0-92c3-919198d897e2"));
     }
 
     @Override
