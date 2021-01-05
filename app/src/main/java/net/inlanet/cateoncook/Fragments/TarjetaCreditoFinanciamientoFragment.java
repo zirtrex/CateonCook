@@ -48,9 +48,7 @@ public class TarjetaCreditoFinanciamientoFragment extends Fragment {
         actualizarMontoTotal();
 
         ly = (ImageView) view.findViewById(R.id.ivMain);
-
         String imgUrl = "https://firebasestorage.googleapis.com/v0/b/cateoncook.appspot.com/o/fondo_amarillo_reducido.jpg?alt=media&token=2ecb8b3e-5621-4c2a-b6a4-475822bb0ac4";
-
         Glide.with(getActivity().getApplicationContext())
                 .load(imgUrl)
                 .centerCrop()

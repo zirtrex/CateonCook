@@ -13,7 +13,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import net.inlanet.cateoncook.Activities.R;
 
@@ -29,6 +32,8 @@ public class CreditoDirectoFragment extends Fragment implements CreditoDirectoPa
 
     View view;
     FrameLayout flFinanciamientos;
+    ImageView ly;
+
     CreditoDirectoFinanciamientoFragment creditoDirectoFinanciamientoFragment;
 
     TextView tvMontoTotal;
@@ -47,6 +52,14 @@ public class CreditoDirectoFragment extends Fragment implements CreditoDirectoPa
 
         view = inflater.inflate(R.layout.fragment_credito_directo, container, false);
 
+        ly = (ImageView) view.findViewById(R.id.ivMain2);
+        String imgUrl = "https://firebasestorage.googleapis.com/v0/b/cateoncook.appspot.com/o/pantalla_valor_entrada.jpg?alt=media&token=15451d64-fdca-484c-8b83-b01ecb20b85a";
+        Glide.with(getActivity().getApplicationContext())
+                .load(imgUrl)
+                .centerCrop()
+                .placeholder(R.drawable.load)
+                .into(ly);
+
         tvMontoTotal = (TextView) view.findViewById(R.id.tvMontoTotal);
         txtEfectivo = (EditText) view.findViewById(R.id.txtEfectivo);
         txtEfectivo.setText("");
@@ -56,16 +69,8 @@ public class CreditoDirectoFragment extends Fragment implements CreditoDirectoPa
 
         creditoDirectoFinanciamientoFragment = new CreditoDirectoFinanciamientoFragment();
 
-        final FragmentManager fragmentManager = getChildFragmentManager();
-        fragmentManager.popBackStack("CreditoDirectoFragment", FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        fragmentManager.beginTransaction()
-                .replace(R.id.fragment_credito_directo_root, creditoDirectoFinanciamientoFragment, "CreditoDirectoFinanciamientoFragment")
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                .addToBackStack(null)
-                .commit();
-
         flFinanciamientos = (FrameLayout) view.findViewById(R.id.fragment_credito_directo_root);
-        flFinanciamientos.setVisibility(View.GONE);
+        //flFinanciamientos.setVisibility(View.GONE);
 
         btnGenerarPago.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,6 +85,9 @@ public class CreditoDirectoFragment extends Fragment implements CreditoDirectoPa
                 txtEfectivo.setText(String.valueOf((float) Math.round(entrada * 100) / 100));
 
                 creditoDirectoFinanciamientoFragment.actualizarMontoTotal(entrada);
+
+                final FragmentManager fragmentManager = getChildFragmentManager();
+                fragmentManager.popBackStack("CreditoDirectoFragment", FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
                 fragmentManager.beginTransaction()
                         .replace(R.id.fragment_credito_directo_root, creditoDirectoFinanciamientoFragment, "CreditoDirectoFinanciamientoFragment")

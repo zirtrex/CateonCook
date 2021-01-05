@@ -9,7 +9,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import net.inlanet.cateoncook.Adapters.FinanciamientoCreditoDirectoRVAdapter;
 import net.inlanet.cateoncook.Interfaces.CartInteractionListener;
@@ -26,6 +29,8 @@ public class CreditoDirectoFinanciamientoFragment extends Fragment {
     CartInteractionListener cartInteractionListener;
 
     View view;
+    ImageView ly;
+
     TextView tvMontoTotal, tvEntrada;
     Double montoTotal = 0.00;
 
@@ -43,6 +48,14 @@ public class CreditoDirectoFinanciamientoFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_credito_directo_financiamiento, container, false);
 
         actualizarMontoTotal(0.00);
+
+        ly = (ImageView) view.findViewById(R.id.ivMain);
+        String imgUrl = "https://firebasestorage.googleapis.com/v0/b/cateoncook.appspot.com/o/fondo_financiamiento_inversiones.jpg?alt=media&token=20519f0e-21ec-418e-a7af-70461e8937ab";
+        Glide.with(getActivity().getApplicationContext())
+                .load(imgUrl)
+                .centerCrop()
+                .placeholder(R.drawable.load)
+                .into(ly);
 
         return view;
     }

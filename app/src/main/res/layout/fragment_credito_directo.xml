@@ -6,9 +6,9 @@
     android:background="@android:color/background_light">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <GridLayout
             android:layout_width="match_parent"
@@ -94,9 +94,15 @@
             android:id="@+id/fragment_credito_directo_root"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:minHeight="50dp">
+            android:layout_weight="1">
 
+            <ImageView
+                android:id="@+id/ivMain2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                tools:ignore="ContentDescription,ObsoleteLayoutParam" />
         </FrameLayout>
 
     </LinearLayout>
