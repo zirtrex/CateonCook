@@ -1,50 +1,43 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_credito_directo_root"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="net.inlanet.cateoncook.Fragments.CreditoDirectoFinanciamientoFragment"
-    android:id="@+id/fragment_credito_directo_root">
-
-    <ImageView
-        android:id="@+id/ivMain"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        tools:ignore="ContentDescription" />
+    android:layout_height="wrap_content"
+    tools:context="net.inlanet.nextnetwork.Fragments.CreditoDirectoFinanciamientoFragment">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/tvMontoTotal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:text="Click en el boton Generar"
             android:textAlignment="center"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/tvEntrada"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
+            android:layout_gravity="center_horizontal"
             android:textAlignment="center"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rvFinanciamientos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             app:layoutManager="LinearLayoutManager"
-            tools:context="net.inlanet.cateoncook.Fragments.CreditoDirectoFinanciamientoFragment"
+            tools:context="net.inlanet.nextnetwork.Fragments.CreditoDirectoFinanciamientoFragment"
             tools:listitem="@layout/fragment_financiamiento_item_list" />
-
     </LinearLayout>
-</FrameLayout>
+
+</RelativeLayout>

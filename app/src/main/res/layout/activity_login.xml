@@ -5,12 +5,20 @@
     android:layout_height="match_parent"
     android:background="@drawable/fondo_login"
     android:gravity="center_vertical|center_horizontal"
-    android:orientation="vertical"
-    android:padding="@dimen/activity_horizontal_margin"
-    tools:context="net.inlanet.cateoncook.Activities.LoginActivity">
+    android:padding="@dimen/activity_horizontal_spacing"
+    tools:context="net.inlanet.nextnetwork.Activities.LoginActivity">
 
+    <ProgressBar
+        android:id="@+id/login_progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:visibility="gone" />
+
+    <!-- Login progress -->
     <ScrollView
-        android:id="@+id/login_form"
+        android:id="@+id/sv_login_form"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -32,6 +40,11 @@
                 app:srcCompat="@drawable/logo_next_es"
                 tools:srcCompat="@drawable/logo_next_es" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/colorAccent" />
+
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
@@ -51,11 +64,6 @@
 
             </android.support.design.widget.TextInputLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/colorAccent" />
-
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
@@ -68,7 +76,7 @@
                     android:layout_height="wrap_content"
                     android:background="@android:color/background_light"
                     android:hint="@string/prompt_password"
-                    android:imeActionId="@+id/login"
+                    android:imeActionId="1"
                     android:imeActionLabel="@string/action_sign_in_short"
                     android:imeOptions="actionUnspecified"
                     android:inputType="textPassword"
@@ -101,13 +109,4 @@
 
         </LinearLayout>
     </ScrollView>
-
-    <!-- Login progress -->
-    <ProgressBar
-        android:id="@+id/login_progress"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:visibility="gone" />
 </RelativeLayout>

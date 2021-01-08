@@ -32,4 +32,6 @@
 
     <string name="notificacion">Notificaciones</string>
 
+    <integer name="login_id">1</integer>
+
 </resources>

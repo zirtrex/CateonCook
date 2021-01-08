@@ -1,110 +1,114 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="net.inlanet.cateoncook.Fragments.CreditoDirectoFragment"
-    android:background="@android:color/background_light">
+    tools:context="net.inlanet.nextnetwork.Fragments.CreditoDirectoFragment">
 
-    <LinearLayout
+    <ImageView
+        android:id="@+id/ivMain2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        tools:ignore="ContentDescription,ObsoleteLayoutParam" />
 
-        <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/colorPrimary"
-            android:columnCount="3"
-            android:padding="10dp"
-            android:rowCount="2"
-            android:useDefaultMargins="true">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_rowSpan="2"
-                android:layout_columnSpan="2"
-                android:layout_gravity="center_vertical"
-                android:text="Precio Total:"
-                android:textColor="@android:color/background_light"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/tvMontoTotal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_rowSpan="2"
-                android:layout_gravity="right|center_vertical"
-                android:text="0"
-                android:textColor="@android:color/background_light"
-                android:textSize="18sp" />
-
-        </GridLayout>
-
-        <TextView
-            android:id="@+id/tvFactor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_rowSpan="2"
-            android:layout_gravity="center_vertical"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:text="INGRESE EL VALOR DE LA ENTRADA:"
-            android:textColor="#F44336"
-            android:textSize="18sp" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="30dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="vertical">
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/colorPrimary"
+                android:columnCount="3"
+                android:padding="@dimen/fragment_horizontal_spacing"
+                android:rowCount="2"
+                android:useDefaultMargins="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_rowSpan="2"
+                    android:layout_columnSpan="2"
+                    android:layout_gravity="center_vertical"
+                    android:text="Precio Total:"
+                    android:textColor="@android:color/background_light"
+                    android:textSize="@dimen/text_size_2" />
+
+                <TextView
+                    android:id="@+id/tvMontoTotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_rowSpan="2"
+                    android:layout_gravity="right|center_vertical"
+                    android:text="0"
+                    android:textColor="@android:color/background_light"
+                    android:textSize="@dimen/text_size_2" />
+
+            </GridLayout>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/tvFactor"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:text="Ingrese efectivo" />
+                android:gravity="center"
+                android:paddingTop="@dimen/fragment_vertical_spacing"
+                android:paddingBottom="@dimen/fragment_vertical_spacing"
+                android:text="INGRESE EL VALOR DE LA ENTRADA:"
+                android:textColor="#F44336"
+                android:textSize="@dimen/text_size_2" />
 
-            <EditText
-                android:id="@+id/txtEfectivo"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:ems="5"
-                android:hint="0.00"
-                android:inputType="numberDecimal"
-                android:textAlignment="textEnd" />
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
 
-            <Button
-                android:id="@+id/btnGenerarPago"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:text="Generar"
-                android:textColor="@android:color/background_light"
-                android:textSize="12sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="Ingrese efectivo" />
+
+                <EditText
+                    android:id="@+id/txtEfectivo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:ems="5"
+                    android:hint="0.00"
+                    android:inputType="numberDecimal"
+                    android:textAlignment="textEnd" />
+
+                <Button
+                    android:id="@+id/btnGenerarPago"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Generar"
+                    android:textColor="@android:color/background_light"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/fragment_credito_directo_root"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </FrameLayout>
 
         </LinearLayout>
 
-        <FrameLayout
-            android:id="@+id/fragment_credito_directo_root"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
+    </ScrollView>
 
-            <ImageView
-                android:id="@+id/ivMain2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                tools:ignore="ContentDescription,ObsoleteLayoutParam" />
-        </FrameLayout>
-
-    </LinearLayout>
-
-</FrameLayout>
+</RelativeLayout>

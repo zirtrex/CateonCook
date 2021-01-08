@@ -1,9 +1,9 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_financiamiento_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="net.inlanet.cateoncook.Fragments.TarjetaCreditoFinanciamientoFragment"
-    android:id="@+id/fragment_financiamiento_root">
+    tools:context="net.inlanet.nextnetwork.Fragments.TarjetaCreditoFinanciamientoFragment">
 
     <ImageView
         android:id="@+id/ivMain"
@@ -11,32 +11,38 @@
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        tools:ignore="ContentDescription,ObsoleteLayoutParam" />
+        tools:ignore="ContentDescription" />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:padding="@dimen/activity_horizontal_spacing">
 
-        <TextView
-            android:id="@+id/tvMontoTotal"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Seleccione el carro de compra"
-            android:textAlignment="center"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="24sp" />
+            android:orientation="vertical">
 
-        <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:id="@+id/rvFinanciamientos"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            app:layoutManager="LinearLayoutManager"
-            tools:context="net.inlanet.cateoncook.Fragments.TarjetaCreditoFinanciamientoFragment"
-            tools:listitem="@layout/fragment_financiamiento_item_list" />
+            <TextView
+                android:id="@+id/tvMontoTotal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/fragment_vertical_spacing"
+                android:text="Seleccione el carro de compra"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/text_size_2" />
 
-    </LinearLayout>
-</FrameLayout>
+            <android.support.v7.widget.RecyclerView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/rvFinanciamientos"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                app:layoutManager="LinearLayoutManager"
+                tools:context="net.inlanet.nextnetwork.Fragments.TarjetaCreditoFinanciamientoFragment"
+                tools:listitem="@layout/fragment_financiamiento_item_list" />
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

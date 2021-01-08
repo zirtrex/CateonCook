@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="net.inlanet.cateoncook.Fragments.CartFragment"
+    tools:context="net.inlanet.nextnetwork.Fragments.CartFragment"
     android:background="@color/color_cart_inicio">
 
     <RelativeLayout
@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:id="@+id/priceLayout"
             android:layout_below="@+id/rvCart"
-            android:padding="@dimen/activity_horizontal_margin"
+            android:padding="@dimen/fragment_horizontal_spacing"
             android:layout_height="wrap_content">
 
             <TableRow
